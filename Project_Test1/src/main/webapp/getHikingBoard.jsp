@@ -23,7 +23,7 @@
 			href="modify.jsp">MODIFY</a>
 	</div>
 
-	<div class="container p-3 my-3 border">
+	<div class="container p-3 my-3">
 		<h3>HIKING</h3>
 	</div>
 	<div class="container">
@@ -50,33 +50,27 @@
 	<c:if test="${logId.id eq board.id || logId.id eq 'admin'}"
 		var="result">
 		<div class="container my-3">
-			<form name="contentForm" method="post" action="contentModify.do">
+			<form name="contentForm">
 				<input type="hidden" name="no" id="no" value="${board.no }">
 				<table class="table table-bordered table-sm">
 					<tr>
-						<th class="col-2"></th>
-						<th class="col-10"></th>
-					<tr>
-					<tr>
-						<td>작성자</td>
-						<td>${board.id}</td>
-					</tr>
-					<tr>
-						<td>제목</td>
 						<td>${board.title}</td>
 					</tr>
 					<tr>
-						<td>내용</td>
-						<td style="min-height: 800px;"><img src="./uploadFile/${board.fileName}"
-							alt="${board.fileName }" width="500px"><br>
-							${board.content}</td>
+						<td>${board.id}</td>
 					</tr>
 					<tr>
-						<td><input type="submit" value="수정"></td>
+						<td style="min-height: 800px;"><img src="./uploadFile/${board.fileName}"
+							alt="${board.fileName }" width="500px"><br>
+							${board.content}
+						</td>
 					</tr>
+					
 				</table>
-				<a href="deleteHikingBoard.do?no=${board.no}">삭제</a> <a
-					href="getHikingBoardList.do">목록</a>
+				<hr>
+				<a class="btn btn-dark" href="deleteHikingBoard.do?no=${board.no}">삭제</a> 
+				<a class="btn btn-dark" href="getHikingBoardList.do">목록</a>
+				<a class="btn btn-dark" href="modifyHikingBoard.do?no=${board.no }">수정</a>
 			</form>
 		</div>
 	</c:if>
@@ -92,25 +86,19 @@
 				<input type="hidden" name="no" id="no" value="${board.no }">
 				<table class="table table-bordered table-sm">
 					<tr>
-						<th class="col-2"></th>
-						<th class="col-10"></th>
-					<tr>
-					<tr>
-						<td>작성자</td>
 						<td>${board.id}</td>
 					</tr>
 					<tr>
-						<td>제목</td>
 						<td>${board.title}</td>
 					</tr>
 					<tr>
-						<td>내용</td>
 						<td style="min-height: 800px;"><img src="./images/${board.fileName}"
 							alt="${board.fileName }" width="500px"> ${board.content}</td>
 					</tr>
 					
 				</table>
-				<a href="getHikingBoardList.do">목록</a>
+				<hr>
+				<a class="btn btn-dark" href="getHikingBoardList.do">목록</a>
 			</form>
 		</div>
 	</c:if>

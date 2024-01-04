@@ -23,7 +23,7 @@
 			href="modify.jsp">MODIFY</a>
 	</div>
 
-	<div class="container p-3 my-3 border">
+	<div class="container p-3 my-3">
 		<h3>WRITE HIKING</h3>
 	</div>
 	<div class="container">
@@ -47,7 +47,7 @@
 			</ul>
 		</nav>
 	</div>
-	<div class="container">
+	<div class="container my-3">
 		<form name="writeForm" method="post" action="writeOkHikingBoard.do" onSubmit="return check()" enctype="multipart/form-data">
 			<input type="hidden" name="id" id="id" value="${logId.id}">
 			<input type="hidden" name="category" id="category" value="hiking">
@@ -61,11 +61,11 @@
 					<td><textarea name="content" id="content"></textarea></td>
 				</tr>
 				<tr>
-					<td><input type="file" name="uploadFile"</td>
+					<td><input class="form-control-file" type="file" name="uploadFile"></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="입력"> <a
-						href="getHikingBoardList.do">목록</a></td>
+					<td><input class="btn btn-dark" type="submit" value="입력"> 
+					<a class="btn btn-dark" href="getHikingBoardList.do">목록</a></td>
 				</tr>
 			</table>
 		</form>

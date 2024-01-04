@@ -20,7 +20,7 @@
 <body>
 
 	<div class="container p-3 my-3 border">
-		<h1>ACCOUNT</h1>
+		<h3>ACCOUNT</h3>
 	</div>
 
 	<div class="container p-3 my-3 border">

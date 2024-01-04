@@ -23,10 +23,10 @@
 			href="modify.jsp">MODIFY</a>
 	</div>
 
-	<div class="container p-3 my-3 border">
+	<div class="container p-3 my-3">
 		<h3>HOME</h3>
 	</div>
-	<div class="container">
+	<div class="container my-3">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<a class="navbar-brand" href="main.jsp"> 
 			<img src="images/logo.png" alt="Logo" style="width: 40px;">
@@ -46,7 +46,9 @@
 					href="getGatheringBoardList.do">GATHERING</a></li>
 			</ul>
 		</nav>
-		
+	</div>
+	<div class="container my-3">
+		<img src="images/about.jpg" style="max-width:100%">
 	</div>
 
 </body>

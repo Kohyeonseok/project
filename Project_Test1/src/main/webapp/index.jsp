@@ -15,12 +15,12 @@
 </head>
 <body>
 
-<div class="container p-3 my-3 border">
+<div class="container p-3 my-3">
   <h3>INDEX</h3>
 </div>
 
-<div class="container p-3 my-3 border">
-	<form action="login.do" method="post" onsubmit="return check()">
+<div class="container p-3 d-flex justify-content-center align-items-center flex-column">
+	<form action="login.do" method="post" onsubmit="return check()" class="text-center">
 		<input type="text" name="id" id="id" placeholder="ID"><br><br>
 		<input type="password" name="password" id="password" placeholder="PASSWORD"><br><br>
 		<input type="submit" value="LOGIN"><br>

@@ -23,7 +23,7 @@
 			href="modify.jsp">MODIFY</a>
 	</div>
 
-	<div class="container p-3 my-3 border">
+	<div class="container p-3 my-3">
 		<h3>HIKING</h3>
 	</div>
 	<div class="container">
@@ -42,47 +42,54 @@
 					href="getFreeBoardList.do">FREE</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="getMarketBoardList.do">MARKET</a></li>
-				<li class="nav-item"><a class="nav-link" 
+				<li class="nav-item"><a class="nav-link"
 					href="getGatheringBoardList.do">GATHERING</a></li>
 			</ul>
 		</nav>
 	</div>
 	<div class="container my-3">
-		<form name="searchForm" action="searchHikingBoard.do"
+		<form class="form-inline" action="searchHikingBoard.do"
 			onSubmit="return check()">
-			<select name="searchCategory">
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select> <input type="text" name="searchContent" id="searchContent"> <input
-				type="submit" value="검색">
+			<select name="searchCategory" class="form-control">
+				<option value="title">TITLE</option>
+				<option value="content">CONTENT</option>
+			</select>&nbsp; <input class="form-control mr-sm-2" name="searchContent"
+				type="text" placeholder="Search">
+			<button class="btn btn-dark" type="submit">검색</button>
 		</form>
-		</div>
-	<div class="container my-3">
-			<form name="tableForm">
-				<table class="table table-bordered table-sm">
-					<tr>
+	</div>
+	<div class="container">
+		<form name="tableForm">
+			<table class="table table-bordered table-sm">
+				<thead>
+					<tr class="thead-dark">
 						<th class="col-1">번호</th>
-						<th class="col-2">아이디</th>
-						<th class="col-8">제목</th>
+						<th class="col-5">제목</th>
+						<th class="col-1">아이디</th>
+						<th class="col-2">작성일</th>
 						<th class="col-1">조회수</th>
 					</tr>
+				</thead>
+				<tbody>
 					<c:forEach var="post" items="${list}">
 						<tr>
 							<td>${post.no }</td>
+							<td><a class="text-dark" href="getHikingBoard.do?no=${post.no}">${post.title }</a></td>
 							<td>${post.id }</td>
-							<td><a href="getHikingBoard.do?no=${post.no}">${post.title }</a></td>
+							<td>${post.wtime }
 							<td>${post.hit }</td>
 						</tr>
 					</c:forEach>
-				</table>
+				</tbody>
+			</table>
 
-						<a href="writeHikingBoard.do">글작성</a>&nbsp;
-						<a href="main.jsp">메인으로</a>
+			<a class="btn btn-dark" href="writeHikingBoard.do">글작성</a>&nbsp; 
+			<a class="btn btn-dark" href="main.jsp">메인으로</a>
 
-<%-- 				<c:forEach var='num' begin='1' end='${post.pageNum}'>
+			<%-- 				<c:forEach var='num' begin='1' end='${post.pageNum}'>
 					<a href="getHikingBoardList.do?offset=${num}">${num}</a>
 				</c:forEach> --%>
-			</form>
+		</form>
 
 	</div>
 </body>
