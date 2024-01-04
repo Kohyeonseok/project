@@ -15,4 +15,5 @@ public interface BoardService {
 	void deleteHikingBoard(BoardVO vo);
 	
 	List<BoardVO> getSearchHikingBoard(BoardVO vo);
+	
 }

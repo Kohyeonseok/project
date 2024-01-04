@@ -19,8 +19,8 @@
 </head>
 <body>
 	<div class="container">
-		${logId.id}님 안녕하세요. <br> <a href="logout.do">LOGOUT</a> &nbsp; <a
-			href="modify.jsp">MODIFY</a>
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
+		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
 	</div>
 
 	<div class="container p-3 my-3">
@@ -55,7 +55,7 @@
 				<option value="content">CONTENT</option>
 			</select>&nbsp; <input class="form-control mr-sm-2" name="searchContent"
 				type="text" placeholder="Search">
-			<button class="btn btn-dark" type="submit">검색</button>
+			<button class="btn btn-dark btn-sm" type="submit">검색</button>
 		</form>
 	</div>
 	<div class="container">
@@ -83,8 +83,8 @@
 				</tbody>
 			</table>
 
-			<a class="btn btn-dark" href="writeHikingBoard.do">글작성</a>&nbsp; 
-			<a class="btn btn-dark" href="main.jsp">메인으로</a>
+			<a class="btn btn-dark btn-sm" href="writeHikingBoard.do">글작성</a>&nbsp; 
+			<a class="btn btn-dark btn-sm" href="main.jsp">메인으로</a>
 
 			<%-- 				<c:forEach var='num' begin='1' end='${post.pageNum}'>
 					<a href="getHikingBoardList.do?offset=${num}">${num}</a>

@@ -11,4 +11,9 @@ public interface UserService {
 	void deleteUser(UserVO vo);
 	
 	UserVO getUser(UserVO vo);
+	
+	int idCheckUser(UserVO vo);
+	
+	int nickNameCheck(UserVO vo);
+	
 }

@@ -41,8 +41,21 @@ public class UserDAO {
 	    } catch (EmptyResultDataAccessException e) {
 	        user = null;
 	        return user;
-	    }
-		
+	    }	
 	}
 	
+	public int idCheckUser(UserVO vo) {
+		String SQL="SELECT COUNT(*) FROM USER WHERE id=?";
+		Object[] args = {vo.getId()};
+		int num = jdbcTemplate.queryForObject(SQL,args,Integer.class); 
+		return num;
+	}
+	
+	public int nickNameCheck(UserVO vo) {
+		String SQL="SELECT COUNT(*) FROM USER WHERE nickName=?";
+		Object[] args = {vo.getNickName()};
+		int num = jdbcTemplate.queryForObject(SQL,args,Integer.class);
+		return num;
+	}
+
 }

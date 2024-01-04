@@ -31,4 +31,14 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUser(vo);
 	}
 
+	@Override
+	public int idCheckUser(UserVO vo) {
+		return userDAO.idCheckUser(vo);
+	}
+
+	@Override
+	public int nickNameCheck(UserVO vo) {
+		return userDAO.nickNameCheck(vo);
+	}
+
 }

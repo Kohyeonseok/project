@@ -19,8 +19,8 @@
 </head>
 <body>
 	<div class="container">
-		${logId.id}님 안녕하세요. <br> <a href="logout.do">LOGOUT</a> &nbsp; <a
-			href="modify.jsp">MODIFY</a>
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
+		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
 	</div>
 
 	<div class="container p-3 my-3">
@@ -49,7 +49,7 @@
 	</div>
 	<c:if test="${logId.id eq board.id || logId.id eq 'admin'}"
 		var="result">
-		<div class="container my-3">
+		<%-- <div class="container my-3">
 			<form name="contentForm">
 				<input type="hidden" name="no" id="no" value="${board.no }">
 				<table class="table table-bordered table-sm">
@@ -72,6 +72,42 @@
 				<a class="btn btn-dark" href="getHikingBoardList.do">목록</a>
 				<a class="btn btn-dark" href="modifyHikingBoard.do?no=${board.no }">수정</a>
 			</form>
+		</div> --%>
+		<div class="container my-3">
+			<form name="contentForm">
+				<input type="hidden" name="no" id="no" value="${board.no}">
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-bordered table-sm">
+							<tr>
+								<td>${board.title}</td>
+							</tr>
+							<tr>
+								<td>${board.id}</td>
+							</tr>
+							<tr>
+								<td style="min-height: 800px;"><img
+									src="./uploadFile/${board.fileName}" alt="${board.fileName}"
+									width="400px"> <br> ${board.content}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-md-4">
+						<a class="btn btn-dark btn-block btn-sm" href="getHikingBoardList.do">목록</a>
+					</div>
+					<div class="col-md-4">
+						<a class="btn btn-dark btn-block btn-sm"
+							href="modifyHikingBoard.do?no=${board.no}">수정</a>
+					</div>
+					<div class="col-md-4">
+						<a class="btn btn-dark btn-block btn-sm"
+							href="deleteHikingBoard.do?no=${board.no}">삭제</a>
+					</div>
+				</div>
+			</form>
 		</div>
 	</c:if>
 
@@ -81,7 +117,7 @@
 
 	<c:if test="${logId.id ne board.id && logId.id ne 'admin'}"
 		var="result">
-		<div class="container my-3">
+		<%-- <div class="container my-3">
 			<form name="contentForm">
 				<input type="hidden" name="no" id="no" value="${board.no }">
 				<table class="table table-bordered table-sm">
@@ -99,6 +135,34 @@
 				</table>
 				<hr>
 				<a class="btn btn-dark" href="getHikingBoardList.do">목록</a>
+			</form>
+		</div> --%>
+		<div class="container my-3">
+			<form name="contentForm">
+				<input type="hidden" name="no" id="no" value="${board.no}">
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-bordered table-sm">
+							<tr>
+								<td>${board.title}</td>
+							</tr>
+							<tr>
+								<td>${board.id}</td>
+							</tr>
+							<tr>
+								<td style="min-height: 800px;"><img
+									src="./uploadFile/${board.fileName}" alt="${board.fileName}"
+									width="400px"> <br> ${board.content}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-md-4">
+						<a class="btn btn-dark btn-block btn-sm" href="getHikingBoardList.do">목록</a>
+					</div>
+				</div>
 			</form>
 		</div>
 	</c:if>

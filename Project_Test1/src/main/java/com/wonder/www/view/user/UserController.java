@@ -1,5 +1,9 @@
 package com.wonder.www.view.user;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,4 +65,27 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping("/idCheck.do")
+	public void idCheck(UserVO vo,HttpServletResponse response) {
+		int num = userService.idCheckUser(vo);
+		try {
+			PrintWriter out = response.getWriter();
+			out.write(String.valueOf(num));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("/nickNameCheck.do")
+	public void nickNameCheck(UserVO vo,HttpServletResponse response) {
+		int num = userService.nickNameCheck(vo);
+		System.out.println(vo.getNickName());
+		try {
+			PrintWriter out = response.getWriter();
+			out.write(String.valueOf(num));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

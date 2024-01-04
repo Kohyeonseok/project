@@ -23,13 +23,13 @@
 	<form action="login.do" method="post" onsubmit="return check()" class="text-center">
 		<input type="text" name="id" id="id" placeholder="ID"><br><br>
 		<input type="password" name="password" id="password" placeholder="PASSWORD"><br><br>
-		<input type="submit" value="LOGIN"><br>
+		<input class="btn btn-dark btn-sm" type="submit" value="LOGIN"><br>
 	</form>
 	<c:if test="${logId eq 1}" var="result">
 		아이디 혹은 비밀번호를 확인하세요.
 	</c:if>
 	<br>
-	<a href="join.jsp">ACCOUNT</a>
+	<a class="btn btn-dark btn-sm" href="join.jsp">ACCOUNT</a>
 </div>
 
 <script>
