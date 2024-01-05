@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.wonder.www.biz.boardVO.BoardVO;
 
 
-@Repository("boardDAO")
+//@Repository("boardDAO")
 public class BoardDAO {
 
-	@Autowired
+//	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	public List<BoardVO> getHikingBoardList(BoardVO vo) {

@@ -13,10 +13,11 @@ public class BoardVO {
 	private int hit;
 	private String wtime;
 	private String fileName;
-	
+
 	private int count;
 	private int pageNum;
 	private int offset;
+	private int totalPage;
 	
 	private String searchCategory;
 	private String searchContent;
@@ -25,6 +26,14 @@ public class BoardVO {
 	
 	
 	
+	public int getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}

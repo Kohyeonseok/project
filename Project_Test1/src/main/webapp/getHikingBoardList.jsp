@@ -19,12 +19,13 @@
 </head>
 <body>
 	<div class="container">
-		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
-		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
+			href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
+			href="modify.jsp">MODIFY</a>
 	</div>
 
 	<div class="container p-3 my-3">
-		<h3>HIKING</h3>
+		<h3>H I K I N G</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -42,19 +43,17 @@
 					href="getFreeBoardList.do">FREE</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="getMarketBoardList.do">MARKET</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="getGatheringBoardList.do">GATHERING</a></li>
 			</ul>
 		</nav>
 	</div>
 	<div class="container my-3">
 		<form class="form-inline" action="searchHikingBoard.do"
-			onSubmit="return check()">
+			onsubmit="return validateSearch()">
 			<select name="searchCategory" class="form-control">
 				<option value="title">TITLE</option>
 				<option value="content">CONTENT</option>
 			</select>&nbsp; <input class="form-control mr-sm-2" name="searchContent"
-				type="text" placeholder="Search">
+				id="searchContent" type="text" placeholder="Search">
 			<button class="btn btn-dark btn-sm" type="submit">검색</button>
 		</form>
 	</div>
@@ -74,7 +73,8 @@
 					<c:forEach var="post" items="${list}">
 						<tr>
 							<td>${post.no }</td>
-							<td><a class="text-dark" href="getHikingBoard.do?no=${post.no}">${post.title }</a></td>
+							<td><a class="text-dark"
+								href="getHikingBoard.do?no=${post.no}">${post.title }</a></td>
 							<td>${post.id }</td>
 							<td>${post.wtime }
 							<td>${post.hit }</td>
@@ -82,8 +82,14 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<c:forEach var='num' begin='1' end='${pageNum.totalPage}'>
+				<a class="btn btn-light btn-sm"
+					href="getHikingBoardList.do?pageNum=${num}">${num}</a>
+			</c:forEach>
 
-			<a class="btn btn-dark btn-sm" href="writeHikingBoard.do">글작성</a>&nbsp; 
+			<hr>
+
+			<a class="btn btn-dark btn-sm" href="writeHikingBoard.do">글작성</a>&nbsp;
 			<a class="btn btn-dark btn-sm" href="main.jsp">메인으로</a>
 
 			<%-- 				<c:forEach var='num' begin='1' end='${post.pageNum}'>
@@ -92,5 +98,16 @@
 		</form>
 
 	</div>
+	<script>
+		function validateSearch() {
+			var searchContent = document.getElementById("searchContent").value;
+
+			if (searchContent.trim() === "") {
+				window.location.href = "getHikingBoardList.do";
+				return false;
+			}
+			return true;
+		}
+	</script>
 </body>
 </html>

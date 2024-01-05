@@ -18,11 +18,33 @@
 
 </head>
 <body>
-
-	<div class="container p-3 my-3 border">
-		<h1>MODIFY</h1>
+<div class="container">
+		${logId.id}님 안녕하세요. <br> 
+		<a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a>
 	</div>
 
+	<div class="container p-3 my-3">
+		<h3>M O D I F Y</h3>
+	</div>
+	<div class="container">
+		<nav class="navbar navbar-expand-sm bg-light navbar-light">
+			<a class="navbar-brand" href="main.jsp"> <img
+				src="images/logo.png" alt="Logo" style="width: 40px;">
+			</a>
+
+			<!-- Links -->
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					href="getHikingBoardList.do">HIKING</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="getCampingBoardList.do">CAMPING</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="getFreeBoardList.do">FREE</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="getMarketBoardList.do">MARKET</a></li>
+			</ul>
+		</nav>
+	</div>
 	<div class="container p-3 my-3 border">
 		<form action="modify.do" action="post" onsubmit="return check()">
 			이름 <br> 
@@ -61,10 +83,11 @@
 			<input type="radio" name="gender" id="gender" value="male" ${logId.gender eq "male" ? 'checked' : '' }>남 
 			<input type="radio" name="gender" id="gender" value="female" ${logId.gender eq "female" ? 'checked' : '' }>여
 			<br> 
-			<input type="submit" value="정보수정">
+			<input class="btn btn-dark btn-sm" type="submit" value="정보수정">
 		</form>
-		<a href="main.jsp">취소</a>
-		<a href="deleteUser.do?id=${logId.id}">탈퇴</a>
+		<br>
+		<a class="btn btn-dark btn-sm" href="main.jsp">취소</a>&nbsp;
+		<a class="btn btn-dark btn-sm" href="deleteUser.do?id=${logId.id}">탈퇴</a>
 	</div>
 
 	<script
@@ -152,6 +175,8 @@
 			}
 
 		}
+		
+		
 	</script>
 
 

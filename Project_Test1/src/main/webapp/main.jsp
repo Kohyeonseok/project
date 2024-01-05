@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="container p-3 my-3">
-		<h3>HOME</h3>
+		<h3>H O M E</h3>
 	</div>
 	<div class="container my-3">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -35,15 +35,13 @@
 			<!-- Links -->
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link"
-					href="getHikingBoardList.do">HIKING</a></li>
+					href="getHikingBoardList.do?">HIKING</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="getCampingBoardList.do">CAMPING</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="getFreeBoardList.do">FREE</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="getMarketBoardList.do">MARKET</a></li>
-				<li class="nav-item"><a class="nav-link" 
-					href="getGatheringBoardList.do">GATHERING</a></li>
 			</ul>
 		</nav>
 	</div>

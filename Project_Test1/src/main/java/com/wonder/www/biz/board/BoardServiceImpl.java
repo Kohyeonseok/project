@@ -11,7 +11,7 @@ import com.wonder.www.biz.boardVO.BoardVO;
 public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
-	private BoardDAO boardDAO;
+	private BoardDAOMybatis boardDAO;
 
 	@Override
 	public List<BoardVO> getHikingBoardList(BoardVO vo) {
@@ -37,6 +37,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> getSearchHikingBoard(BoardVO vo) {
 		return boardDAO.getSearchHikingBoard(vo);
+	}
+
+	@Override
+	public void updateOkHikingBoard(BoardVO vo) {
+		boardDAO.updateOkHikingBoard(vo);
+	}
+
+	@Override
+	public BoardVO getHikingBoardTotalPage(BoardVO vo) {
+		vo.setTotalPage((int) Math.ceil(boardDAO.countPost(vo)/10.0));
+		return vo;
 	}
 
 }

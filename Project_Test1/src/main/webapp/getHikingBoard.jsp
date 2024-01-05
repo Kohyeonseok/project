@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="container p-3 my-3">
-		<h3>HIKING</h3>
+		<h3>H I K I N G</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -42,8 +42,6 @@
 					href="getFreeBoardList.do">FREE</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="getMarketBoardList.do">MARKET</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="getGatheringBoardList.do">GATHERING</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -84,6 +82,9 @@
 							</tr>
 							<tr>
 								<td>${board.id}</td>
+							</tr>
+							<tr>
+								<td>${board.wtime}</td>
 							</tr>
 							<tr>
 								<td style="min-height: 800px;"><img

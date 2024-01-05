@@ -16,4 +16,7 @@ public interface BoardService {
 	
 	List<BoardVO> getSearchHikingBoard(BoardVO vo);
 	
+	void updateOkHikingBoard(BoardVO vo);
+	
+	BoardVO getHikingBoardTotalPage(BoardVO vo);
 }
