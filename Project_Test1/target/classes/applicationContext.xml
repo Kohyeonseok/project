@@ -21,12 +21,21 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 	
-	<!-- Spring JDBC 설정 -->
+	<!--Mybatis 설정-->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:sql-map-config.xml" />
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+	
+	
+ 	<!--Spring JDBC 설정--> 
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<!-- Transaction 설정 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
@@ -41,5 +50,7 @@
 		<aop:pointcut expression="execution(* com.wonder.www.biz..*Impl.*(..))" id="boardPointcut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="boardPointcut" />
 	</aop:config>
+	
+	
 	
 </beans>

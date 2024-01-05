@@ -9,7 +9,7 @@ import com.wonder.www.biz.userVO.UserVO;
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
-	private UserDAO userDAO;
+	private UserDAOMybatis userDAO;
 
 	@Override
 	public void insertUser(UserVO vo) {

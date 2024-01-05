@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.wonder.www.biz.userVO.UserVO;
 
-@Repository("userDAO")
+//@Repository("userDAO")
 public class UserDAO {
 
-	@Autowired
+//	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	public void insertUser(UserVO vo) {
