@@ -2,7 +2,9 @@ package com.wonder.www.view.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wonder.www.biz.board.BoardService;
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.replyVO.ReplyVO;
 
 @Controller
 public class BoardController {
@@ -54,8 +57,11 @@ public class BoardController {
 	
 	@RequestMapping("/getHikingBoard.do")
 	public ModelAndView getHikingBoard(BoardVO vo, ModelAndView mav) {
+		vo.setCategory("HIKING");
 		mav.addObject("board",boardService.getHikingBoard(vo));
-		mav.setViewName("getHikingBoard.jsp");
+		mav.addObject("boardReply",boardService.getBoardReply(vo));
+		System.out.println(mav);
+		mav.setViewName("getHikingBoard.jsp");	
 		return mav;
 	}
 	
@@ -93,6 +99,18 @@ public class BoardController {
 		boardService.updateOkHikingBoard(vo);
 		mav.setViewName("redirect:getHikingBoardList.do");
 		return mav;
+	}
+	
+	@RequestMapping("/inputReply.do")
+	public void inputReply(ReplyVO vo,HttpServletResponse response) {
+		boardService.inputReply(vo);
+		try {
+			PrintWriter out = response.getWriter();
+			out.write("{\"id\": \"" + vo.getId() +"\", \"replyContent\": \"" + vo.getReplyContent() + "\", \"wtime\":\""+vo.getWtime()+"\"}");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

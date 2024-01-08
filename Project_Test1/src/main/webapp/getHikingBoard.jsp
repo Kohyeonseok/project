@@ -15,7 +15,7 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="jq/jquery.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -74,6 +74,7 @@
 		<div class="container my-3">
 			<form name="contentForm">
 				<input type="hidden" name="no" id="no" value="${board.no}">
+				<input type="hidden" name="category" id="category" value="${board.category}">
 				<div class="row">
 					<div class="col-md-12">
 						<table class="table table-bordered table-sm">
@@ -94,6 +95,33 @@
 						</table>
 					</div>
 				</div>
+				<hr>
+					<div class="container">
+						<h4>R E P L Y</h4>
+						<div class="container">
+							<table class="table table-sm" id="commentList">
+								<thead class="thead-dark">
+									<tr>
+										<th class="col-2">작성자</th>
+										<th class="col-7">댓글</th>
+										<th class="col-3">작성시간</th>
+									</tr>
+								</thead>
+							<tbody>
+							<c:forEach var="reply" items="${boardReply }">
+								<tr>
+									<td>${reply.id}</td>
+									<td>${reply.replyContent}</td>
+									<td>${reply.wtime }</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+							</table>
+						</div>
+						<input type="hidden" name="logId" id="logId" value="${logId.id }">
+						<textarea class="form-control" id="replyContent" rows="3"></textarea>
+						<button type="button" class="btn btn-dark mt-3 btn-sm" onClick="addReply()">댓글 작성</button>
+					</div>
 				<hr>
 				<div class="row">
 					<div class="col-md-4">
@@ -141,6 +169,7 @@
 		<div class="container my-3">
 			<form name="contentForm">
 				<input type="hidden" name="no" id="no" value="${board.no}">
+				<input type="hidden" name="category" id="category" value="${board.category}">
 				<div class="row">
 					<div class="col-md-12">
 						<table class="table table-bordered table-sm">
@@ -159,6 +188,33 @@
 					</div>
 				</div>
 				<hr>
+					<div class="container">
+						<h4>R E P L Y</h4>
+						<div class="container">
+							<table class="table table-sm" id="commentList">
+							<thead class="thead-dark">
+									<tr>
+										<th class="col-2">작성자</th>
+										<th class="col-7">댓글</th>
+										<th class="col-3">작성시간</th>
+									</tr>
+								</thead>
+								<tbody>
+							<c:forEach var="reply" items="${boardReply }">
+								<tr>
+									<td>${reply.id}</td>
+									<td>${reply.replyContent}</td>
+									<td>${reply.wtime }</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+							</table>
+						</div>
+						<input type="hidden" name="logId" id="logId" value="${logId.id }">
+						<textarea class="form-control" id="replyContent" rows="3"></textarea>
+						<button type="button" class="btn btn-dark mt-3 btn-sm" onClick="addReply()">댓글 작성</button>
+					</div>
+				<hr>
 				<div class="row">
 					<div class="col-md-4">
 						<a class="btn btn-dark btn-block btn-sm" href="getHikingBoardList.do">목록</a>
@@ -169,5 +225,40 @@
 	</c:if>
 
 </body>
+<script>
+function addReply() {
+    var postNo = document.getElementById("no").value;
+    var category = $("#category").val();
+    var id = $("#logId").val();
+    var replyContent = $("#replyContent").val();
+
+    $.ajax({
+        type: "POST",
+        url: "inputReply.do",
+        data: {
+            'postNo': postNo,
+            'category': category,
+            'id': id,
+            'replyContent': replyContent
+        },
+        dataType: 'json',
+        success: function (data) {
+        	console.log(data);
+            if (data) {
+                updateComment(data);
+            } else {
+                alert('댓글 추가에 실패했습니다.');
+            }
+        }
+    });
+}
+
+function updateComment(data) {
+    console.log(data);
+    commentList.innerHTML += '<tr><td>' + data.id + '</td><td>' + data.replyContent +'</td><td>'+data.wtime +'</td></tr>';
+    $("#replyContent").val("");
+}
+</script>
+
 
 </html>

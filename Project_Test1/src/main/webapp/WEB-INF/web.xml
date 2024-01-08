@@ -14,6 +14,7 @@
   <filter>
   	<filter-name>CorsFilter</filter-name>
   	<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+  	
   	<filter-name>characterEncoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
 		<init-param> 
@@ -28,6 +29,7 @@
 		<filter-name>characterEncoding</filter-name> 
 		<url-pattern>*.do</url-pattern> 
 	</filter-mapping>
+	
   <servlet>
     <servlet-name>action</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -36,6 +38,7 @@
     	<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
     </init-param>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>action</servlet-name>
     <url-pattern>*.do</url-pattern>
