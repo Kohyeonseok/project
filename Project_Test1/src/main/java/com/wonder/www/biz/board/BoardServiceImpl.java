@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.replyVO.ReplyVO;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -48,6 +49,16 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getHikingBoardTotalPage(BoardVO vo) {
 		vo.setTotalPage((int) Math.ceil(boardDAO.countPost(vo)/10.0));
 		return vo;
+	}
+
+	@Override
+	public void inputReply(ReplyVO vo) {
+		boardDAO.inputReply(vo);
+	}
+
+	@Override
+	public List<ReplyVO> getBoardReply(BoardVO vo) {
+		return boardDAO.getBoardReply(vo);
 	}
 
 }

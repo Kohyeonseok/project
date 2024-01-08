@@ -61,5 +61,20 @@
 			UPDATE HIKINGBOARD SET HIT=HIT+1 WHERE NO=#{no}
 		]]>
 	</update>
+	
+	
+	
+	
+	<insert id="inputReply">
+		<![CDATA[
+			INSERT INTO REPLY (POSTNO,ID,REPLYCONTENT,CATEGORY) VALUES(#{postNo},#{id},#{replyContent},#{category}) 
+		]]>
+	</insert>
+	
+	<select id="getBoardReply" resultType="reply">
+		<![CDATA[
+			SELECT * FROM REPLY WHERE POSTNO=${no} AND CATEGORY='${category}' ORDER BY NO ASC
+		]]>
+	</select>
 
 </mapper>

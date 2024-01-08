@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.replyVO.ReplyVO;
 
 @Repository("boardDAO")
 public class BoardDAOMybatis {
@@ -46,4 +47,11 @@ public class BoardDAOMybatis {
 		mybatis.update("BoardDAO.updateOkHikingBoard",vo);
 	}
 	
+	public void inputReply(ReplyVO vo) {
+		mybatis.insert("BoardDAO.inputReply",vo);
+	}
+	
+	public List<ReplyVO> getBoardReply(BoardVO vo) {
+		return mybatis.selectList("BoardDAO.getBoardReply",vo);
+	}
 }
