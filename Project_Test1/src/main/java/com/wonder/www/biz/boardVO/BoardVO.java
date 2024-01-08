@@ -24,8 +24,73 @@ public class BoardVO {
 	
 	private MultipartFile uploadFile;
 	
+	private String reportId;
+	private String reportCategory;
+	private int reportBoardNo;
+	private String reportBoardCategory;
+	private String reportContent;
+	private String reportWtime;
+	private int reportNo;
 	
 	
+	
+	
+	public int getReportNo() {
+		return reportNo;
+	}
+
+	public void setReportNo(int reportNo) {
+		this.reportNo = reportNo;
+	}
+
+	public String getReportWtime() {
+		return reportWtime;
+	}
+
+	public void setReportWtime(String reportWtime) {
+		this.reportWtime = reportWtime;
+	}
+
+	public String getReportId() {
+		return reportId;
+	}
+
+	public void setReportId(String reportId) {
+		this.reportId = reportId;
+	}
+
+	public String getReportCategory() {
+		return reportCategory;
+	}
+
+	public void setReportCategory(String reportCategory) {
+		this.reportCategory = reportCategory;
+	}
+
+	public int getReportBoardNo() {
+		return reportBoardNo;
+	}
+
+	public void setReportBoardNo(int reportBoardNo) {
+		this.reportBoardNo = reportBoardNo;
+	}
+
+	public String getReportBoardCategory() {
+		return reportBoardCategory;
+	}
+
+	public void setReportBoardCategory(String reportBoardCategory) {
+		this.reportBoardCategory = reportBoardCategory;
+	}
+
+	public String getReportContent() {
+		return reportContent;
+	}
+
+	public void setReportContent(String reportContent) {
+		this.reportContent = reportContent;
+	}
+
 	public int getTotalPage() {
 		return totalPage;
 	}

@@ -1,5 +1,7 @@
 package com.wonder.www.biz.user;
 
+import java.util.List;
+
 import com.wonder.www.biz.userVO.UserVO;
 
 public interface UserService {
@@ -16,4 +18,7 @@ public interface UserService {
 	
 	int nickNameCheck(UserVO vo);
 	
+	List<UserVO> getUserList();
+	
+	void adminDeleteUser(UserVO vo);
 }

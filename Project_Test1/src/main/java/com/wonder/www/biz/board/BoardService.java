@@ -24,4 +24,12 @@ public interface BoardService {
 	void inputReply(ReplyVO vo);
 	
 	List<ReplyVO> getBoardReply(BoardVO vo);
+	
+	void reportBoard(BoardVO vo);
+	
+	List<BoardVO> getReportBoardList();
+	
+	void adminDeleteBoard(BoardVO vo);
+	
+	void adminDeleteReport(BoardVO vo);
 }

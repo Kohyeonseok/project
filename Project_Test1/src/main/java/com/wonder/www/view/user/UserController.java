@@ -87,5 +87,19 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping("/getUserList.do")
+	public ModelAndView getUserList(ModelAndView mav) {
+		mav.addObject("list",userService.getUserList());
+		mav.setViewName("userList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/adminDeleteUser.do")
+	public ModelAndView adminDeleteUser(UserVO vo, ModelAndView mav) {
+		userService.adminDeleteUser(vo);
+		mav.setViewName("redirect:getUserList.do");
+		return mav;
+	}
 
 }

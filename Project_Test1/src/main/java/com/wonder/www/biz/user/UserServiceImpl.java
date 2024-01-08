@@ -1,5 +1,7 @@
 package com.wonder.www.biz.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int nickNameCheck(UserVO vo) {
 		return userDAO.nickNameCheck(vo);
+	}
+
+	@Override
+	public List<UserVO> getUserList() {
+		return userDAO.getUserList();
+	}
+
+	@Override
+	public void adminDeleteUser(UserVO vo) {
+		userDAO.deleteUser(vo);
 	}
 
 }

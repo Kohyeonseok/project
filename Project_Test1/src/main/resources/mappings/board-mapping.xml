@@ -76,5 +76,30 @@
 			SELECT * FROM REPLY WHERE POSTNO=${no} AND CATEGORY='${category}' ORDER BY NO ASC
 		]]>
 	</select>
+	
+	
+	<insert id="reportBoard">
+		<![CDATA[
+			INSERT INTO REPORTBOARD (REPORTID,REPORTBOARDCATEGORY,REPORTBOARDNO,REPORTCATEGORY,REPORTCONTENT) VALUES(#{reportId},#{reportBoardCategory},#{reportBoardNo},#{reportCategory},#{reportContent})
+		]]>
+	</insert>
+	
+	<select id="getReportBoardList" resultType="board">
+		<![CDATA[
+			SELECT * FROM REPORTBOARD ORDER BY REPORTWTIME ASC;
+		]]>
+	</select>
+	
+	<delete id="adminDeleteBoard">
+		<![CDATA[
+			DELETE FROM ${category}BOARD WHERE NO=#{no}
+		]]>
+	</delete>
+	
+	<delete id="adminDeleteReport">
+		<![CDATA[
+			DELETE FROM REPORTBOARD WHERE reportNo=#{reportNo}
+		]]>
+	</delete>
 
 </mapper>

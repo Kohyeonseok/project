@@ -24,7 +24,6 @@ public class BoardController {
 	
 	@RequestMapping("/getHikingBoardList.do")
 	public ModelAndView getHikingBoardList(BoardVO vo, ModelAndView mav){
-		vo.setCategory("HIKINGBOARD");
 		mav.addObject("pageNum",boardService.getHikingBoardTotalPage(vo));
 		vo.setOffset((vo.getPageNum()-1)*10);
 		mav.addObject("list",boardService.getHikingBoardList(vo));
@@ -112,5 +111,33 @@ public class BoardController {
 			e.printStackTrace();
 		}
 	}
-
+	
+	@RequestMapping("/report.do")
+	public ModelAndView reportBoard(BoardVO vo,ModelAndView mav) {
+		boardService.reportBoard(vo);
+		mav.setViewName("redirect:getHikingBoardList.do");
+		return mav;
+	}
+	
+	@RequestMapping("/getReportBoardList.do")
+	public ModelAndView getReportBoardList(ModelAndView mav){
+		mav.addObject("list",boardService.getReportBoardList());
+		mav.setViewName("reportBoard.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/adminDeleteBoard.do")
+	public ModelAndView adminDeleteBoard(BoardVO vo,ModelAndView mav) {
+		boardService.adminDeleteBoard(vo);
+		mav.setViewName("getReportBoardList.do");
+		return mav;
+	}
+	
+	@RequestMapping("/adminDeleteReport.do")
+	public ModelAndView adminDeleteReport(BoardVO vo,ModelAndView mav) {
+		boardService.adminDeleteReport(vo);
+		mav.setViewName("getReportBoardList.do");
+		return mav;
+	}
+	
 }

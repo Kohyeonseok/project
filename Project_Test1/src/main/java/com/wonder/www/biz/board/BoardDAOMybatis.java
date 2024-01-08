@@ -54,4 +54,20 @@ public class BoardDAOMybatis {
 	public List<ReplyVO> getBoardReply(BoardVO vo) {
 		return mybatis.selectList("BoardDAO.getBoardReply",vo);
 	}
+	
+	public void reportBoard(BoardVO vo) {
+		mybatis.insert("BoardDAO.reportBoard",vo);
+	}
+	
+	public List<BoardVO> getReportBoardList(){
+		return mybatis.selectList("BoardDAO.getReportBoardList");
+	}
+	
+	public void adminDeleteBoard(BoardVO vo) {
+		mybatis.delete("BoardDAO.adminDeleteBoard",vo);
+	}
+	
+	public void adminDeleteReport(BoardVO vo) {
+		mybatis.delete("BoardDAO.adminDeleteReport",vo);
+	}
 }

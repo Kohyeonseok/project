@@ -18,6 +18,14 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> getHikingBoardList(BoardVO vo) {
 		return boardDAO.getHikingBoardList(vo);
 	}
+	
+	@Override
+	public BoardVO getHikingBoardTotalPage(BoardVO vo) {
+		vo.setTotalPage((int) Math.ceil(boardDAO.countPost(vo)/10.0));
+		return vo;
+	}
+	
+	
 
 	@Override
 	public void writeOkHikingBoard(BoardVO vo) {
@@ -45,11 +53,7 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.updateOkHikingBoard(vo);
 	}
 
-	@Override
-	public BoardVO getHikingBoardTotalPage(BoardVO vo) {
-		vo.setTotalPage((int) Math.ceil(boardDAO.countPost(vo)/10.0));
-		return vo;
-	}
+	
 
 	@Override
 	public void inputReply(ReplyVO vo) {
@@ -59,6 +63,26 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<ReplyVO> getBoardReply(BoardVO vo) {
 		return boardDAO.getBoardReply(vo);
+	}
+
+	@Override
+	public void reportBoard(BoardVO vo) {
+		boardDAO.reportBoard(vo);
+	}
+
+	@Override
+	public List<BoardVO> getReportBoardList() {
+		return boardDAO.getReportBoardList();
+	}
+
+	@Override
+	public void adminDeleteBoard(BoardVO vo) {
+		boardDAO.adminDeleteBoard(vo);
+	}
+
+	@Override
+	public void adminDeleteReport(BoardVO vo) {
+		boardDAO.adminDeleteReport(vo);
 	}
 
 }

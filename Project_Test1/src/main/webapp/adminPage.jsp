@@ -18,45 +18,35 @@
 
 </head>
 <body>
-	<c:if test="${logId.id ne 'admin' }" var="result">
 	<div class="container">
-		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
-		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
+			href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
+			href="modify.jsp">MODIFY</a> &nbsp; <a class="btn btn-dark btn-sm"
+			href="adminPage.jsp">ADMINPAGE</a>
 	</div>
-	</c:if>
-	
-	<c:if test="${logId.id eq 'admin' }" var="result">
-	<div class="container">
-		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
-		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a> &nbsp;
-		<a class="btn btn-dark btn-sm" href="adminPage.jsp">ADMINPAGE</a>
-	</div>
-	</c:if>
-	
+
 	<div class="container p-3 my-3">
-		<h3>H O M E</h3>
+		<h3>Admin Page</h3>
 	</div>
 	<div class="container my-3">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-			<a class="navbar-brand" href="main.jsp"> 
-			<img src="images/logo.png" alt="Logo" style="width: 40px;">
+			<a class="navbar-brand" href="main.jsp"> <img
+				src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
 
 			<!-- Links -->
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link"
-					href="getHikingBoardList.do">HIKING</a></li>
+					href="getReportBoardList.do">REPORT</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="getCampingBoardList.do">CAMPING</a></li>
+					href="getQnABoardList.do">QNA</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="getFreeBoardList.do">FREE</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="getMarketBoardList.do">MARKET</a></li>
+					href="getUserList.do">USERList</a></li>
 			</ul>
 		</nav>
 	</div>
 	<div class="container my-3">
-		<img src="images/about.jpg" style="max-width:100%">
+		<img src="images/camp.jpg" style="max-width: 100%">
 	</div>
 
 </body>

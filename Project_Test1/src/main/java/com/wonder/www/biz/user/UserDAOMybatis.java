@@ -1,5 +1,7 @@
 package com.wonder.www.biz.user;
 
+import java.util.List;
+
 import org.mybatis.spring.MyBatisSystemException;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +44,9 @@ public class UserDAOMybatis {
 	public int nickNameCheck(UserVO vo) {
 		return mybatis.selectOne("UserDAO.nickNameCheck", vo);
 	}
+	
+	public List<UserVO> getUserList(){
+		return mybatis.selectList("UserDAO.getUserList");
+	}
+	
 }

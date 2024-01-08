@@ -18,11 +18,20 @@
 
 </head>
 <body>
+	<c:if test="${logId.id ne 'admin' }" var="result">
 	<div class="container">
-		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
-			href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
-			href="modify.jsp">MODIFY</a>
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
+		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
 	</div>
+	</c:if>
+	
+	<c:if test="${logId.id eq 'admin' }" var="result">
+	<div class="container">
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
+		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a> &nbsp;
+		<a class="btn btn-dark btn-sm" href="adminPage.jsp">ADMINPAGE</a>
+	</div>
+	</c:if>
 
 	<div class="container p-3 my-3">
 		<h3>H I K I N G</h3>

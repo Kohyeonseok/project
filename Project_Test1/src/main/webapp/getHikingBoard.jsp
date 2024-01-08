@@ -18,10 +18,20 @@
 <script src="jq/jquery.js"></script>
 </head>
 <body>
+	<c:if test="${logId.id ne 'admin' }" var="result">
 	<div class="container">
 		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
 		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
 	</div>
+	</c:if>
+	
+	<c:if test="${logId.id eq 'admin' }" var="result">
+	<div class="container">
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
+		<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a> &nbsp;
+		<a class="btn btn-dark btn-sm" href="adminPage.jsp">ADMINPAGE</a>
+	</div>
+	</c:if>
 
 	<div class="container p-3 my-3">
 		<h3>H I K I N G</h3>
@@ -219,10 +229,46 @@
 					<div class="col-md-4">
 						<a class="btn btn-dark btn-block btn-sm" href="getHikingBoardList.do">목록</a>
 					</div>
+					<div class="col-md-4">
+						<a class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="#myModal">신고</a>
+					</div>
 				</div>
 			</form>
 		</div>
 	</c:if>
+	
+	<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">R E P O R T</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       		<form action="report.do" method="post" onsubmit="return contentCheck()">
+       			<input type="hidden" name="reportId" value="${board.id }">
+       			<input type="hidden" name="reportBoardCategory" value="${board.category }">
+       			<input type="hidden" name="reportBoardNo" value="${board.no }">
+       			<select name="reportCategory" class="form-control">
+       				<option value="cussword">욕설</option>
+       				<option value="meandering">사행성</option>
+       				<option value="innocent">허위사실</option>
+       			</select>
+       			<br>
+       			<input type="text" class="form-control mr-sm-2" name="reportContent" id="reportContent" placeholder="신고내용을 입력하세요."><br><br>
+       			
+       			<input class="btn btn-danger btn-sm" type="submit" value="신고">&nbsp;
+		        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">닫기</button>
+       		</form>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 <script>
@@ -257,6 +303,16 @@ function updateComment(data) {
     console.log(data);
     commentList.innerHTML += '<tr><td>' + data.id + '</td><td>' + data.replyContent +'</td><td>'+data.wtime +'</td></tr>';
     $("#replyContent").val("");
+}
+
+function contentCheck(){
+	var content = document.getElementById("reportContent").value;
+	
+	if(content == "" ){
+		alert("신고내용을 작성하세요.");
+		return false;
+	}
+	alert("신고를 완료하였습니다.");
 }
 </script>
 
