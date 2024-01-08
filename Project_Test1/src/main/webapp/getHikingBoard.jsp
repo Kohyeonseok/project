@@ -47,11 +47,11 @@
 				<li class="nav-item"><a class="nav-link"
 					href="getHikingBoardList.do">HIKING</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="getCampingBoardList.do">CAMPING</a></li>
+					href="#">CAMPING</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="getFreeBoardList.do">FREE</a></li>
+					href="#">FREE</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="getMarketBoardList.do">MARKET</a></li>
+					href="#">MARKET</a></li>
 			</ul>
 		</nav>
 	</div>

@@ -39,7 +39,7 @@
 				<li class="nav-item"><a class="nav-link"
 					href="getReportBoardList.do">REPORT</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="getQnABoardList.do">QNA</a></li>
+					href="#">QNA</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="getUserList.do">USERList</a></li>
 			</ul>
