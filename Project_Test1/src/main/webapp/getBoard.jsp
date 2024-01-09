@@ -36,7 +36,7 @@
 	</c:if>
 
 	<div class="container p-3 my-3">
-		<h3>H I K I N G</h3>
+		<h3>${category }</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -46,12 +46,13 @@
 
 			<!-- Links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					href="getHikingBoardList.do">HIKING</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">CAMPING</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">FREE</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">MARKET</a></li>
-				<li class="nav-item"><a class="nav-link" href="getQNABoard.do?id=${logId.id}">QNA</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+				<c:if test="${logId.id ne 'admin' }">
+				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+				</c:if>
 			</ul>
 		</nav>
 	</div>
@@ -120,15 +121,15 @@
 				<div class="row">
 					<div class="col-md-4">
 						<a class="btn btn-dark btn-block btn-sm"
-							href="getHikingBoardList.do">목록</a>
+							href="getBoardList.do?category=${category }">목록</a>
 					</div>
 					<div class="col-md-4">
 						<a class="btn btn-dark btn-block btn-sm"
-							href="modifyHikingBoard.do?no=${board.no}">수정</a>
+							href="modifyBoard.do?no=${board.no}&category=${category}">수정</a>
 					</div>
 					<div class="col-md-4">
 						<a class="btn btn-dark btn-block btn-sm"
-							href="deleteHikingBoard.do?no=${board.no}">삭제</a>
+							href="deleteBoard.do?no=${board.no}&category=${category}">삭제</a>
 					</div>
 				</div>
 			</form>
@@ -201,7 +202,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<a class="btn btn-dark btn-block btn-sm"
-							href="getHikingBoardList.do">목록</a>
+							href="getBoardList.do?&category=${category}">목록</a>
 					</div>
 					<div class="col-md-4">
 						<a class="btn btn-danger btn-block btn-sm" data-toggle="modal"

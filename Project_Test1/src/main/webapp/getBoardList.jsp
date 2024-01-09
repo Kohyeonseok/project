@@ -36,7 +36,7 @@
 	</c:if>
 
 	<div class="container p-3 my-3">
-		<h3>H I K I N G</h3>
+		<h3>${category }</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -46,23 +46,24 @@
 
 			<!-- Links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					href="getHikingBoardList.do">HIKING</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">CAMPING</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">FREE</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">MARKET</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+				<c:if test="${logId.id ne 'admin' }">
 				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+				</c:if>
 			</ul>
 		</nav>
 	</div>
 	<div class="container my-3">
-		<form class="form-inline" action="searchHikingBoard.do"
-			onsubmit="return validateSearch()">
+		<form class="form-inline" action="searchBoard.do" onsubmit="return validateSearch()">
+			<input type="hidden" name="category" id="category" value="${category }">
 			<select name="searchCategory" class="form-control">
 				<option value="title">TITLE</option>
 				<option value="content">CONTENT</option>
-			</select>&nbsp; <input class="form-control mr-sm-2" name="searchContent"
-				id="searchContent" type="text" placeholder="Search">
+			</select>&nbsp; 
+			<input class="form-control mr-sm-2" name="searchContent" id="searchContent" type="text" placeholder="Search">
 			<button class="btn btn-dark btn-sm" type="submit">검색</button>
 		</form>
 	</div>
@@ -83,7 +84,7 @@
 						<tr>
 							<td>${post.no }</td>
 							<td><a class="text-dark"
-								href="getHikingBoard.do?no=${post.no}">${post.title }</a></td>
+								href="getBoard.do?no=${post.no}&category=${category}">${post.title }</a></td>
 							<td>${post.id }</td>
 							<td>${post.wtime }
 							<td>${post.hit }</td>
@@ -92,18 +93,18 @@
 				</tbody>
 			</table>
 			<a class="btn btn-light btn-sm"
-				href="getHikingBoardList.do?pageNum=${(pageNum.pageNum > 1) ? pageNum.pageNum-1 : 1}"><span
+				href="getBoardList.do?pageNum=${(pageNum.pageNum > 1) ? pageNum.pageNum-1 : 1}&category=${category}"><span
 				class="carousel-control-prev-icon"></span></a>
 			<c:forEach var='num' begin='1' end='${pageNum.totalPage}'>
 				<a class="btn btn-light btn-sm"
-					href="getHikingBoardList.do?pageNum=${num}">${num}</a>
+					href="getBoardList.do?pageNum=${num}&category=${category}">${num}</a>
 			</c:forEach>
 			<a class="btn btn-light btn-sm"
-				href="getHikingBoardList.do?pageNum=${(pageNum.pageNum < pageNum.totalPage) ? pageNum.pageNum + 1 : pageNum.totalPage}"><span
+				href="getBoardList.do?pageNum=${(pageNum.pageNum < pageNum.totalPage) ? pageNum.pageNum + 1 : pageNum.totalPage}&category=${category}"><span
 				class="carousel-control-next-icon"></span></a>
 			<hr>
 
-			<a class="btn btn-dark btn-sm" href="writeHikingBoard.do">글작성</a>&nbsp;
+			<a class="btn btn-dark btn-sm" href="writeBoard.do?category=${category}">글작성</a>&nbsp;
 			<a class="btn btn-dark btn-sm" href="main.jsp">메인으로</a>
 
 			<%-- 				<c:forEach var='num' begin='1' end='${post.pageNum}'>
@@ -114,10 +115,11 @@
 	</div>
 	<script>
 		function validateSearch() {
+			var category = document.getElementById("category").value;
 			var searchContent = document.getElementById("searchContent").value;
 
 			if (searchContent.trim() === "") {
-				window.location.href = "getHikingBoardList.do";
+				window.location.href = "getBoardList.do?category="+category;
 				return false;
 			}
 			return true;

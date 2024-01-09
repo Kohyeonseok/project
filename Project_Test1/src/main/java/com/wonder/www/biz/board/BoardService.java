@@ -8,19 +8,21 @@ import com.wonder.www.biz.replyVO.ReplyVO;
 
 public interface BoardService {
 
-	List<BoardVO> getHikingBoardList(BoardVO vo);
+	List<BoardVO> getBoardList(BoardVO vo);
 	
-	void writeOkHikingBoard(BoardVO vo);
+	BoardVO getBoardTotalPage(BoardVO vo);
 	
-	BoardVO getHikingBoard(BoardVO vo);
+	List<BoardVO> getSearchBoard(BoardVO vo);
 	
-	void deleteHikingBoard(BoardVO vo);
+	void writeOkBoard(BoardVO vo);
 	
-	List<BoardVO> getSearchHikingBoard(BoardVO vo);
+	BoardVO getBoard(BoardVO vo);
 	
-	void updateOkHikingBoard(BoardVO vo);
+	void deleteBoard(BoardVO vo);
 	
-	BoardVO getHikingBoardTotalPage(BoardVO vo);
+	
+	void updateOkBoard(BoardVO vo);
+	
 	
 	void inputReply(ReplyVO vo);
 	

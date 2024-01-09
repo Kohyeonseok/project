@@ -16,36 +16,38 @@ public class BoardDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public List<BoardVO> getHikingBoardList(BoardVO vo) {
-		return mybatis.selectList("BoardDAO.getHikingBoardList",vo);
+	public List<BoardVO> getBoardList(BoardVO vo) {
+		return mybatis.selectList("BoardDAO.getBoardList",vo);
 	}
 	
 	public int countPost(BoardVO vo) {
 		return mybatis.selectOne("BoardDAO.countPost",vo);
 	}
 	
-	public void writeOkHikingBoard(BoardVO vo) {
-		mybatis.insert("BoardDAO.writeOkHikingBoard",vo);
+	public List<BoardVO> getSearchBoard(BoardVO vo) {
+		return mybatis.selectList("BoardDAO.getSearchBoard",vo);
 	}
 	
-	public BoardVO getHikingBoard(BoardVO vo) {
-		return mybatis.selectOne("BoardDAO.getHikingBoard",vo);
+	
+	public void writeOkBoard(BoardVO vo) {
+		mybatis.insert("BoardDAO.writeOkBoard",vo);
 	}
 	
-	public void deleteHikingBoard(BoardVO vo) {
-		mybatis.delete("BoardDAO.deleteHikingBoard",vo);
+	public BoardVO getBoard(BoardVO vo) {
+		return mybatis.selectOne("BoardDAO.getBoard",vo);
 	}
 	
-	public List<BoardVO> getSearchHikingBoard(BoardVO vo) {
-		return mybatis.selectList("BoardDAO.getSearchHikingBoard",vo);
+	public void deleteBoard(BoardVO vo) {
+		mybatis.delete("BoardDAO.deleteBoard",vo);
 	}
 	
-	public void updateHikingBoardHit(BoardVO vo) {
-		mybatis.update("BoardDAO.updateHikingBoardHit",vo);
+
+	public void updateBoardHit(BoardVO vo) {
+		mybatis.update("BoardDAO.updateBoardHit",vo);
 	}
 	
-	public void updateOkHikingBoard(BoardVO vo) {
-		mybatis.update("BoardDAO.updateOkHikingBoard",vo);
+	public void updateOkBoard(BoardVO vo) {
+		mybatis.update("BoardDAO.updateOkBoard",vo);
 	}
 	
 	public void inputReply(ReplyVO vo) {

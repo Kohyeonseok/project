@@ -34,14 +34,13 @@
 
 			<!-- Links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					href="getHikingBoardList.do">HIKING</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="#">CAMPING</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="#">FREE</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="#">MARKET</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+				<c:if test="${logId.id ne 'admin' }">
+				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+				</c:if>
 			</ul>
 		</nav>
 	</div>

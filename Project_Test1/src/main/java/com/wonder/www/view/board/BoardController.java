@@ -23,24 +23,33 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping("/getHikingBoardList.do")
-	public ModelAndView getHikingBoardList(BoardVO vo, ModelAndView mav){
-		mav.addObject("pageNum",boardService.getHikingBoardTotalPage(vo));
+	@RequestMapping("/getBoardList.do")
+	public ModelAndView getBoardList(BoardVO vo, ModelAndView mav){
+		mav.addObject("pageNum",boardService.getBoardTotalPage(vo));
+		mav.addObject("category",vo.getCategory().toUpperCase());
 		vo.setOffset((vo.getPageNum()-1)*10);
-		mav.addObject("list",boardService.getHikingBoardList(vo));
-		mav.setViewName("getHikingBoardList.jsp");
+		mav.addObject("list",boardService.getBoardList(vo));
+		mav.setViewName("getBoardList.jsp");
 		return mav;
 	}
 	
-	@RequestMapping("/writeHikingBoard.do")
-	public ModelAndView writeHikingBoard(BoardVO vo,ModelAndView mav) {
-		mav.addObject("category",vo);
-		mav.setViewName("writeHikingBoard.jsp");
+	@RequestMapping("/searchBoard.do")
+	public ModelAndView searchBoard(BoardVO vo, ModelAndView mav) {
+		mav.addObject("category",vo.getCategory().toUpperCase());
+		mav.addObject("list",boardService.getSearchBoard(vo));
+		mav.setViewName("getBoardList.jsp");
 		return mav;
 	}
 	
-	@RequestMapping("/writeOkHikingBoard.do")
-	public ModelAndView writeOkHikingBoard(BoardVO vo,ModelAndView mav) throws IOException {
+	@RequestMapping("/writeBoard.do")
+	public ModelAndView writeBoard(BoardVO vo,ModelAndView mav) {
+		mav.addObject("category",vo.getCategory().toUpperCase());
+		mav.setViewName("writeBoard.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/writeOkBoard.do")
+	public ModelAndView writeOkBoard(BoardVO vo,ModelAndView mav) throws IOException {
 		MultipartFile uploadFile = vo.getUploadFile();
 		if(!uploadFile.isEmpty()) {
 			String fileName = uploadFile.getOriginalFilename();
@@ -50,44 +59,40 @@ public class BoardController {
 			uploadFile.transferTo(new File("/Users/hyeonseok/Desktop/spring/Project_Test1/src/main/webapp/uploadFile/" + newFileName));
 		}
 		
-		boardService.writeOkHikingBoard(vo);
-		mav.setViewName("redirect:getHikingBoardList.do");
+		boardService.writeOkBoard(vo);
+		mav.setViewName("redirect:getBoardList.do?category="+vo.getCategory());
 		return mav;
 	}
 	
-	@RequestMapping("/getHikingBoard.do")
-	public ModelAndView getHikingBoard(BoardVO vo, ModelAndView mav) {
-		vo.setCategory("HIKING");
-		mav.addObject("board",boardService.getHikingBoard(vo));
+	@RequestMapping("/getBoard.do")
+	public ModelAndView getBoard(BoardVO vo, ModelAndView mav) {
+		mav.addObject("board",boardService.getBoard(vo));
 		mav.addObject("boardReply",boardService.getBoardReply(vo));
+		mav.addObject("category",vo.getCategory().toUpperCase());
 		System.out.println(mav);
-		mav.setViewName("getHikingBoard.jsp");	
+		mav.setViewName("getBoard.jsp");	
 		return mav;
 	}
 	
-	@RequestMapping("/deleteHikingBoard.do")
-	public ModelAndView deleteHikingBoard(BoardVO vo, ModelAndView mav) {
-		boardService.deleteHikingBoard(vo);
-		mav.setViewName("redirect:getHikingBoardList.do");
+	@RequestMapping("/deleteBoard.do")
+	public ModelAndView deleteBoard(BoardVO vo, ModelAndView mav) {
+		boardService.deleteBoard(vo);
+		mav.setViewName("redirect:getBoardList.do?category="+vo.getCategory());
 		return mav;
 	}
 	
-	@RequestMapping("/searchHikingBoard.do")
-	public ModelAndView searchHikingBoard(BoardVO vo, ModelAndView mav) {
-		mav.addObject("list",boardService.getSearchHikingBoard(vo));
-		mav.setViewName("getHikingBoardList.jsp");
+	
+	
+	@RequestMapping("/modifyBoard.do")
+	public ModelAndView modifyBoard(BoardVO vo, ModelAndView mav) {
+		mav.addObject("category",vo.getCategory().toUpperCase());
+		mav.addObject("board",boardService.getBoard(vo));
+		mav.setViewName("modifyBoard.jsp");
 		return mav;
 	}
 	
-	@RequestMapping("/modifyHikingBoard.do")
-	public ModelAndView modifyHikingBoard(BoardVO vo, ModelAndView mav) {
-		mav.addObject("board",boardService.getHikingBoard(vo));
-		mav.setViewName("modifyHikingBoard.jsp");
-		return mav;
-	}
-	
-	@RequestMapping("/updateOkHikingBoard.do")
-	public ModelAndView updateOkHikingBoard(BoardVO vo,ModelAndView mav) throws IllegalStateException, IOException {
+	@RequestMapping("/updateOkBoard.do")
+	public ModelAndView updateOkBoard(BoardVO vo,ModelAndView mav) throws IllegalStateException, IOException {
 		MultipartFile uploadFile = vo.getUploadFile();
 		if(!uploadFile.isEmpty()) {
 			String fileName = uploadFile.getOriginalFilename();
@@ -96,8 +101,8 @@ public class BoardController {
 			vo.setFileName(newFileName);
 			uploadFile.transferTo(new File("/Users/hyeonseok/Desktop/spring/Project_Test1/src/main/webapp/uploadFile/" + newFileName));
 		}
-		boardService.updateOkHikingBoard(vo);
-		mav.setViewName("redirect:getHikingBoardList.do");
+		boardService.updateOkBoard(vo);
+		mav.setViewName("redirect:getBoardList.do?category="+vo.getCategory());
 		return mav;
 	}
 	

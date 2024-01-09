@@ -38,7 +38,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link"
 					href="getReportBoardList.do">REPORT</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">QNA</a></li>
+				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
 				<li class="nav-item"><a class="nav-link" href="getUserList.do">USERList</a></li>
 			</ul>
 		</nav>

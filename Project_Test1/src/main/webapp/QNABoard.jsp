@@ -43,17 +43,27 @@
 			<a class="navbar-brand" href="main.jsp"> <img
 				src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
-
-			<!-- Links -->
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					href="getHikingBoardList.do">HIKING</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">CAMPING</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">FREE</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">MARKET</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
-			</ul>
+			<c:if test="${logId.id ne 'admin' }">
+				<!-- Links -->
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+				<c:if test="${logId.id ne 'admin' }">
+				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+				</c:if>
+				</ul>
+			</c:if>
+			<c:if test="${logId.id eq 'admin' }">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link"
+						href="getReportBoardList.do">REPORT</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+					<li class="nav-item"><a class="nav-link" href="getUserList.do">USERList</a></li>
+				</ul>
+			</c:if>
 		</nav>
 	</div>
 
@@ -89,16 +99,17 @@
 		<hr>
 		<c:if test="${logId.id eq 'admin' }" var="result">
 			<form name="contentForm" action="writeQnAReply.do">
-				<input type="hidden" name="forName" value="${board.id }">
-				<input type="hidden" name="groupNum" value="${board.groupNum }">
-				<input type="hidden" name="stepNum" value="${board.no }">
-				<input type="hidden" name="id" value="${logId.id }">
+				<input type="hidden" name="forName" value="${board.id }"> <input
+					type="hidden" name="groupNum" value="${board.groupNum }"> <input
+					type="hidden" name="stepNum" value="${board.no }"> <input
+					type="hidden" name="id" value="${logId.id }">
 				<div class="row">
 					<div class="col-md-12">
 						<table class="table table-bordered table-sm">
 							<tr>
 								<td>제목</td>
-								<td><input type="text" name="title" value="re : ${board.title}"></td>
+								<td><input type="text" name="title"
+									value="re : ${board.title}"></td>
 							</tr>
 							<tr>
 								<td>작성자</td>

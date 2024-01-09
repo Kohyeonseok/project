@@ -34,21 +34,20 @@
 
 			<!-- Links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					href="getHikingBoardList.do">HIKING</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="#">CAMPING</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="#">FREE</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="#">MARKET</a></li>
+								<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
+				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+				<c:if test="${logId.id ne 'admin' }">
+				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+				</c:if>
 			</ul>
 		</nav>
 	</div>
 	<div class="container my-3">
-		<form name="writeForm" method="post" action="writeOkHikingBoard.do" onSubmit="return check()" enctype="multipart/form-data">
+		<form name="writeForm" method="post" action="writeOkBoard.do" onSubmit="return check()" enctype="multipart/form-data">
 			<input type="hidden" name="id" id="id" value="${logId.id}">
-			<input type="hidden" name="category" id="category" value="hiking">
+			<input type="hidden" name="category" id="category" value="${category }">
 			<table class="table table-bordered table-sm">
 				<tr>
 					<td>제목</td>
@@ -66,7 +65,7 @@
 			<hr>
 				<div class="row">
 					<div class="col-md-4">
-						<a class="btn btn-dark btn-block btn-sm" href="getHikingBoardList.do">목록</a>
+						<a class="btn btn-dark btn-block btn-sm" href="getBoardList.do?category=${category }">목록</a>
 					</div>
 					<div class="col-md-4">
 						<input class="btn btn-dark btn-block btn-sm" type="submit" value="작성">

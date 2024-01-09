@@ -16,42 +16,44 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAOMybatis boardDAO;
 
 	@Override
-	public List<BoardVO> getHikingBoardList(BoardVO vo) {
-		return boardDAO.getHikingBoardList(vo);
+	public List<BoardVO> getBoardList(BoardVO vo) {
+		return boardDAO.getBoardList(vo);
 	}
 	
 	@Override
-	public BoardVO getHikingBoardTotalPage(BoardVO vo) {
+	public BoardVO getBoardTotalPage(BoardVO vo) {
 		vo.setTotalPage((int) Math.ceil(boardDAO.countPost(vo)/10.0));
 		return vo;
 	}
 	
+	@Override
+	public List<BoardVO> getSearchBoard(BoardVO vo) {
+		return boardDAO.getSearchBoard(vo);
+	}
+
+	
 	
 
 	@Override
-	public void writeOkHikingBoard(BoardVO vo) {
-		boardDAO.writeOkHikingBoard(vo);
+	public void writeOkBoard(BoardVO vo) {
+		boardDAO.writeOkBoard(vo);
 	}
 
 	@Override
-	public BoardVO getHikingBoard(BoardVO vo) {
-		boardDAO.updateHikingBoardHit(vo);
-		return boardDAO.getHikingBoard(vo);
+	public BoardVO getBoard(BoardVO vo) {
+		boardDAO.updateBoardHit(vo);
+		return boardDAO.getBoard(vo);
 	}
 
 	@Override
-	public void deleteHikingBoard(BoardVO vo) {
-		boardDAO.deleteHikingBoard(vo);
+	public void deleteBoard(BoardVO vo) {
+		boardDAO.deleteBoard(vo);
 	}
 
-	@Override
-	public List<BoardVO> getSearchHikingBoard(BoardVO vo) {
-		return boardDAO.getSearchHikingBoard(vo);
-	}
 
 	@Override
-	public void updateOkHikingBoard(BoardVO vo) {
-		boardDAO.updateOkHikingBoard(vo);
+	public void updateOkBoard(BoardVO vo) {
+		boardDAO.updateOkBoard(vo);
 	}
 
 	

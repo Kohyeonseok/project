@@ -4,8 +4,8 @@
 
 <mapper namespace="BoardDAO">
 
-	<select id="getHikingBoardList" resultType="board">
-		SELECT * FROM HIKINGBOARD ORDER BY NO DESC LIMIT 10
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM ${category}BOARD ORDER BY NO DESC LIMIT 10
 		<if test="offset == -10">
 			OFFSET 0
 		</if>
@@ -14,14 +14,18 @@
 		</if>
 	</select>
 
-	<select id="getHikingBoard" resultType="board">
+	<select id="countPost" resultType="int">
+			SELECT COUNT(*) FROM ${category}BOARD
+	</select>
+	
+	<select id="getBoard" resultType="board">
 		<![CDATA[
-			SELECT * FROM HIKINGBOARD WHERE NO=#{no}
+			SELECT * FROM ${category}BOARD WHERE NO=#{no}
 		]]>
 	</select>
 
-	<select id="getSearchHikingBoard" resultType="board">
-		SELECT * FROM HIKINGBOARD
+	<select id="getSearchBoard" resultType="board">
+		SELECT * FROM ${category}BOARD
 		WHERE 1 = 1
 		<if test="searchCategory == 'title'">
 			AND TITLE LIKE CONCAT ('%', #{searchContent}, '%')
@@ -32,33 +36,28 @@
 		ORDER BY NO DESC
 	</select>
 
-	<select id="countPost" resultType="int">
-		<![CDATA[
-			SELECT COUNT(*) FROM HIKINGBOARD
-		]]>
-	</select>
 
-	<insert id="writeOkHikingBoard">
+	<insert id="writeOkBoard">
 		<![CDATA[
-			INSERT INTO HIKINGBOARD (ID, TITLE, CONTENT,FILENAME, CATEGORY) values(#{id},#{title},#{content},#{fileName},#{category})
+			INSERT INTO ${category}BOARD (ID, TITLE, CONTENT,FILENAME, CATEGORY) values(#{id},#{title},#{content},#{fileName},#{category})
 		]]>
 	</insert>
 
-	<delete id="deleteHikingBoard">
+	<delete id="deleteBoard">
 		<![CDATA[
-			DELETE FROM HIKINGBOARD WHERE NO=#{no}
+			DELETE FROM ${category}BOARD WHERE NO=#{no}
 		]]>
 	</delete>
 
-	<update id="updateOkHikingBoard">
+	<update id="updateOkBoard">
 		<![CDATA[
-			UPDATE HIKINGBOARD SET title=CONCAT(#{title},'(수정)'), content=#{content}, wtime=CURRENT_TIMESTAMP, fileName=#{fileName} WHERE NO=#{no}
+			UPDATE ${category}BOARD SET title=CONCAT(#{title},'(수정)'), content=#{content}, wtime=CURRENT_TIMESTAMP, fileName=#{fileName} WHERE NO=#{no}
 		]]>
 	</update>
 
-	<update id="updateHikingBoardHit">
+	<update id="updateBoardHit">
 		<![CDATA[
-			UPDATE HIKINGBOARD SET HIT=HIT+1 WHERE NO=#{no}
+			UPDATE ${category}BOARD SET HIT=HIT+1 WHERE NO=#{no}
 		]]>
 	</update>
 
