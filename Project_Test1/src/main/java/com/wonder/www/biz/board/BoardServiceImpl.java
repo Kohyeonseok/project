@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.qnaVO.QnAVO;
 import com.wonder.www.biz.replyVO.ReplyVO;
 
 @Service("boardService")
@@ -83,6 +84,31 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void adminDeleteReport(BoardVO vo) {
 		boardDAO.adminDeleteReport(vo);
+	}
+
+	@Override
+	public void deleteReply(ReplyVO vo) {
+		boardDAO.deleteReply(vo);
+	}
+
+	@Override
+	public List<QnAVO> getQNABoardList(QnAVO vo) {
+		return boardDAO.getQNABoardList(vo);
+	}
+
+	@Override
+	public void writeOkQnABoard(QnAVO vo) {
+		boardDAO.writeOkQnABoard(vo);
+	}
+
+	@Override
+	public QnAVO getQnABoard(QnAVO vo) {
+		return boardDAO.getQnABoard(vo);
+	}
+
+	@Override
+	public void writeQnAReply(QnAVO vo) {
+		boardDAO.writeQnAReply(vo);
 	}
 
 }

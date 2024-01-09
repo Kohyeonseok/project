@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.qnaVO.QnAVO;
 import com.wonder.www.biz.replyVO.ReplyVO;
 
 @Repository("boardDAO")
@@ -69,5 +70,29 @@ public class BoardDAOMybatis {
 	
 	public void adminDeleteReport(BoardVO vo) {
 		mybatis.delete("BoardDAO.adminDeleteReport",vo);
+	}
+	
+	public void deleteReply(ReplyVO vo) {
+		mybatis.delete("BoardDAO.deleteReply",vo);
+	}
+	
+	public List<QnAVO> getQNABoardList(QnAVO vo){
+		return mybatis.selectList("BoardDAO.getQNABoardList",vo);
+	}
+	
+	public void writeOkQnABoard(QnAVO vo) {
+		mybatis.insert("BoardDAO.writeOkQnABoard",vo);
+		vo.setGroupNum((Integer) mybatis.selectOne("BoardDAO.getCurNum"));
+		mybatis.update("BoardDAO.updateGroupNum",vo);
+	}
+	
+	public QnAVO getQnABoard(QnAVO vo) {
+		return mybatis.selectOne("BoardDAO.getQnABoard",vo);
+	}
+	
+	public void writeQnAReply(QnAVO vo) {
+		mybatis.update("BoardDAO.updateStepNum",vo);
+		mybatis.insert("BoardDAO.writeQnAReply",vo);
+		mybatis.update("BoardDAO.updateResult",vo);
 	}
 }

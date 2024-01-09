@@ -37,7 +37,7 @@
 				<br> <a class="btn btn-dark btn-sm" href="join.jsp">ACCOUNT</a>
 			</div>
 			<div class="col-8">
-				<img src="images/item.jpg" style="height: 100%; width: 100%; object-fit: cover;">
+				<img src="images/item.jpg" style="height: 80%; width: 100%; object-fit: cover;">
 			</div>
 		</div>
 	</div>

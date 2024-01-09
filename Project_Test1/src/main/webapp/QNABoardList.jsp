@@ -36,7 +36,7 @@
 	</c:if>
 
 	<div class="container p-3 my-3">
-		<h3>H I K I N G</h3>
+		<h3>Q N A</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -55,73 +55,34 @@
 			</ul>
 		</nav>
 	</div>
+	
 	<div class="container my-3">
-		<form class="form-inline" action="searchHikingBoard.do"
-			onsubmit="return validateSearch()">
-			<select name="searchCategory" class="form-control">
-				<option value="title">TITLE</option>
-				<option value="content">CONTENT</option>
-			</select>&nbsp; <input class="form-control mr-sm-2" name="searchContent"
-				id="searchContent" type="text" placeholder="Search">
-			<button class="btn btn-dark btn-sm" type="submit">검색</button>
-		</form>
-	</div>
-	<div class="container">
 		<form name="tableForm">
 			<table class="table table-bordered table-sm">
 				<thead>
 					<tr class="thead-dark">
-						<th class="col-1">번호</th>
-						<th class="col-5">제목</th>
-						<th class="col-1">아이디</th>
+						<th class="col-1">작성자</th>
+						<th class="col-7">제목</th>
 						<th class="col-2">작성일</th>
-						<th class="col-1">조회수</th>
+						<th class="col-2">답변</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="post" items="${list}">
+					<c:forEach var="post" items="${QnAList}">
 						<tr>
-							<td>${post.no }</td>
-							<td><a class="text-dark"
-								href="getHikingBoard.do?no=${post.no}">${post.title }</a></td>
 							<td>${post.id }</td>
+							<td><a class="text-dark" href="getQnABoard.do?no=${post.no}">${post.title }</a></td>
 							<td>${post.wtime }
-							<td>${post.hit }</td>
+							<td>${post.result}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<a class="btn btn-light btn-sm"
-				href="getHikingBoardList.do?pageNum=${(pageNum.pageNum > 1) ? pageNum.pageNum-1 : 1}"><span
-				class="carousel-control-prev-icon"></span></a>
-			<c:forEach var='num' begin='1' end='${pageNum.totalPage}'>
-				<a class="btn btn-light btn-sm"
-					href="getHikingBoardList.do?pageNum=${num}">${num}</a>
-			</c:forEach>
-			<a class="btn btn-light btn-sm"
-				href="getHikingBoardList.do?pageNum=${(pageNum.pageNum < pageNum.totalPage) ? pageNum.pageNum + 1 : pageNum.totalPage}"><span
-				class="carousel-control-next-icon"></span></a>
-			<hr>
-
-			<a class="btn btn-dark btn-sm" href="writeHikingBoard.do">글작성</a>&nbsp;
-			<a class="btn btn-dark btn-sm" href="main.jsp">메인으로</a>
-
-			<%-- 				<c:forEach var='num' begin='1' end='${post.pageNum}'>
-					<a href="getHikingBoardList.do?offset=${num}">${num}</a>
-				</c:forEach> --%>
 		</form>
-
+		
+		<hr>
+			<a class="btn btn-dark btn-sm" href="writeQnABoard.jsp">글작성</a>&nbsp;
+			<a class="btn btn-dark btn-sm" href="main.jsp">메인으로</a>
 	</div>
-	<script>
-		function validateSearch() {
-			var searchContent = document.getElementById("searchContent").value;
-
-			if (searchContent.trim() === "") {
-				window.location.href = "getHikingBoardList.do";
-				return false;
-			}
-			return true;
-		}
-	</script>
 </body>
 </html>

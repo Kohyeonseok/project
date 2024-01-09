@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wonder.www.biz.board.BoardService;
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.qnaVO.QnAVO;
 import com.wonder.www.biz.replyVO.ReplyVO;
 
 @Controller
@@ -112,6 +113,18 @@ public class BoardController {
 		}
 	}
 	
+	@RequestMapping("/deleteReply.do")
+	public void deleteReply(ReplyVO vo,HttpServletResponse response) {
+		boardService.deleteReply(vo);
+		try {
+			PrintWriter out = response.getWriter();
+			out.write(1);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@RequestMapping("/report.do")
 	public ModelAndView reportBoard(BoardVO vo,ModelAndView mav) {
 		boardService.reportBoard(vo);
@@ -137,6 +150,34 @@ public class BoardController {
 	public ModelAndView adminDeleteReport(BoardVO vo,ModelAndView mav) {
 		boardService.adminDeleteReport(vo);
 		mav.setViewName("getReportBoardList.do");
+		return mav;
+	}
+	
+	@RequestMapping("/getQNABoardList.do")
+	public ModelAndView getQNABoard(QnAVO vo, ModelAndView mav) {
+		mav.addObject("QnAList",boardService.getQNABoardList(vo));
+		mav.setViewName("QNABoardList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/writeOkQnABoard.do")
+	public ModelAndView writeOkQnABoard(QnAVO vo,ModelAndView mav) {
+		boardService.writeOkQnABoard(vo);
+		mav.setViewName("redirect:getQNABoardList.do?id=" + vo.getId());
+		return mav;
+	}
+	
+	@RequestMapping("/getQnABoard.do")
+	public ModelAndView getQnABoard(QnAVO vo,ModelAndView mav) {
+		mav.addObject("board",boardService.getQnABoard(vo));
+		mav.setViewName("QNABoard.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/writeQnAReply.do")
+	public ModelAndView writeQnAReply(QnAVO vo,ModelAndView mav) {
+		boardService.writeQnAReply(vo);
+		mav.setViewName("redirect:getQNABoardList.do?id="+vo.getId());
 		return mav;
 	}
 	
