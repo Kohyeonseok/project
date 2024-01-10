@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="container p-3 my-3">
-		<h3>M O D I F Y</h3>
+		<h3>MODIFY INFO</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">

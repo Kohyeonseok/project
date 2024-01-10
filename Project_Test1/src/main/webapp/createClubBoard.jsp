@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="container p-3 my-3">
-		<h3>WRITE</h3>
+		<h3>CREATE CLUB</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -46,9 +46,8 @@
 		</nav>
 	</div>
 	<div class="container my-3">
-		<form name="writeForm" method="post" action="writeOkBoard.do" onSubmit="return check()" enctype="multipart/form-data">
+		<form name="writeForm" method="post" action="createOkClubBoard.do" onSubmit="return check()" enctype="multipart/form-data">
 			<input type="hidden" name="id" id="id" value="${logId.id}">
-			<input type="hidden" name="category" id="category" value="${category }">
 			<table class="table table-bordered table-sm">
 				<tr>
 					<td>제목</td>
@@ -59,17 +58,20 @@
 					<td><textarea name="content" id="content"></textarea></td>
 				</tr>
 				<tr>
-					<td><input class="form-control-file" type="file" name="uploadFile"></td>
+					<td><input class="form-control-file" type="file" name="uploadFile" id="uploadFile"></td>
 				</tr>
-
+				<tr>
+					<td>마감일자</td>
+					<td><input type="date" name="dueDate" id="dueDate"></td>
+				</tr>
 			</table>
 			<hr>
 				<div class="row">
 					<div class="col-md-4">
-						<a class="btn btn-dark btn-block btn-sm" href="getBoardList.do?category=${category }">목록</a>
+						<a class="btn btn-dark btn-block btn-sm" href="getClubBoardList.do">목록</a>
 					</div>
 					<div class="col-md-4">
-						<input class="btn btn-dark btn-block btn-sm" type="submit" value="작성">
+						<input class="btn btn-dark btn-block btn-sm" type="submit" value="모임만들기">
 					</div> 
 				</div>
 		</form>
@@ -78,20 +80,27 @@
 	
 </body>
 <script>
+		var today = new Date().toISOString().split('T')[0];
+		  document.getElementById('dueDate').min = today;
+		  
 	function check() {
 		let title = document.getElementById("title").value;
-		let contents = document.getElementById("contents").value;
-
+		let content = document.getElementById("content").value;
+		let uploadFile = document.getElementById("uploadFile").value;
+		
 		if (title == "") {
 			alert("제목을 입력하세요.");
 			document.getElementById("title").focus();
 			return false;
-		} else if (contents == "") {
+		} else if (content == "") {
 			alert("내용을 입력하세요.");
-			document.getElementById("contents").focus();
+			document.getElementById("content").focus();
 			return false;
-		} else {
-			return true;
+		} else if (!uploadFile){
+			alert("사진은 필수입니다.");
+			return false;
+		} else{
+		 	return true;
 		}
 	}
 </script>

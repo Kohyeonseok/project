@@ -153,13 +153,72 @@
 		]]>
 	</insert>
 	
-	<insert id="updateResult">
+	<update id="updateResult">
 		<![CDATA[
 			UPDATE QNABoard SET RESULT = '답변완료' WHERE NO=#{groupNum}
 		]]>
+	</update>
 		
-	</insert>
-		
-	
+	<select id="getClubBoardList" resultType="club">
+		<![CDATA[
+			SELECT * FROM CLUBBOARD ORDER BY DUEDATE ASC
+		]]>
+	</select>
 
+	<insert id="createOkClubBoard">
+		<![CDATA[
+			INSERT INTO CLUBBOARD (ID,TITLE,CONTENT,FILENAME,DUEDATE) VALUES (#{id},#{title},#{content},#{fileName},#{dueDate})
+		]]>
+	</insert>
+	
+	<select id="getClubBoard" resultType="club">
+		<![CDATA[
+			SELECT * FROM CLUBBOARD WHERE NO=#{no}
+		]]>
+	</select>
+	
+	<select id="getClubMembers" resultType="club">
+		<![CDATA[
+			SELECT * FROM CLUBMEMBER WHERE NO=#{no}
+		]]>
+	</select>
+	
+	<insert id="joinClub">
+		<![CDATA[
+			INSERT INTO CLUBMEMBER (NO,ID) VALUES (#{no},#{id})
+		]]>
+	</insert>
+	
+	<select id="getClubMember" resultType="club">
+		<![CDATA[
+			SELECT * FROM CLUBMEMBER WHERE NO=#{no} AND ID=#{id}
+		]]>
+	</select>
+	
+	<delete id="cancleClub">
+		<![CDATA[
+			DELETE FROM CLUBMEMBER WHERE NO=#{no} AND ID=#{id}
+		]]>
+	</delete>
+	
+	<select id="searchClubBoard" resultType="club">
+		SELECT * FROM CLUBBOARD
+		WHERE 1 = 1
+		<if test="searchCategory == 'title'">
+			AND TITLE LIKE CONCAT ('%', #{searchContent}, '%')
+		</if>
+		<if test="searchCategory == 'content'">
+			AND CONTENT LIKE CONCAT ('%', #{searchContent}, '%')
+		</if>
+		<if test="searchCategory == 'date'">
+			AND DUEDATE LIKE CONCAT ('%', #{searchContent}, '%')
+		</if>
+		ORDER BY DUEDATE DESC
+	</select>
+	
+	<delete id="deleteClubBoard">
+		<![CDATA[
+			DELETE FROM CLUBBOARD WHERE NO=#{no}
+		]]>
+	</delete>
 </mapper>

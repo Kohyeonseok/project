@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script
@@ -15,7 +15,7 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="jq/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<c:if test="${logId.id ne 'admin' }" var="result">
@@ -36,16 +36,16 @@
 	</c:if>
 
 	<div class="container p-3 my-3">
-		<h3>Q N A</h3>
+		<h3>CLUB</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<a class="navbar-brand" href="main.jsp"> <img
 				src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
-			<c:if test="${logId.id ne 'admin' }">
-				<!-- Links -->
-				<ul class="navbar-nav">
+
+			<!-- Links -->
+			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
@@ -55,83 +55,76 @@
 					<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
 				</c:if>
 			</ul>
-			</c:if>
-			<c:if test="${logId.id eq 'admin' }">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link"
-						href="getReportBoardList.do">REPORT</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
-					<li class="nav-item"><a class="nav-link" href="getUserList.do">USERList</a></li>
-				</ul>
-			</c:if>
 		</nav>
 	</div>
-
 	<div class="container my-3">
-		<form name="contentForm">
-			<input type="hidden" name="no" id="no" value="${board.no}">
-			<div class="row">
-				<div class="col-md-12">
-					<table class="table table-bordered table-sm">
-						<tr>
-							<td>제목</td>
-							<td>${board.title}</td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td>${board.id}</td>
-						</tr>
-						<tr>
-							<td>내용</td>
-							<td>${board.content}</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="col-md-4">
-					<a class="btn btn-dark btn-block btn-sm"
-						href="getQNABoardList.do?id=${logId.id }">목록</a>
-				</div>
-			</div>
+		<form class="form-inline" action="searchClubBoard.do" onsubmit="return validateSearch()"> 
+			<select name="searchCategory" class="form-control">
+				<option value="title">TITLE</option>
+				<option value="content">CONTENT</option>
+				<option value="date">DATE</option>
+			</select>&nbsp; 
+			<input class="form-control mr-sm-2" name="searchContent" id="searchContent" type="text" placeholder="Search">
+			<button class="btn btn-dark btn-sm" type="submit">검색</button>
 		</form>
-		<hr>
-		<c:if test="${logId.id eq 'admin' }" var="result">
-			<form name="contentForm" action="writeQnAReply.do">
-				<input type="hidden" name="forName" value="${board.id }"> <input
-					type="hidden" name="groupNum" value="${board.groupNum }"> <input
-					type="hidden" name="stepNum" value="${board.no }"> <input
-					type="hidden" name="id" value="${logId.id }">
-				<div class="row">
-					<div class="col-md-12">
-						<table class="table table-bordered table-sm">
-							<tr>
-								<td>제목</td>
-								<td><input type="text" name="title"
-									value="re : ${board.title}"></td>
-							</tr>
-							<tr>
-								<td>작성자</td>
-								<td>${logId.id}</td>
-							</tr>
-							<tr>
-								<td>내용</td>
-								<td><textarea name="content">re : ${board.content}	&#10;</textarea></td>
-							</tr>
-						</table>
-					</div>
+	</div>
+	<div class="container">
+		<c:forEach var="club" items="${clubBoard}">
+			<div class="container my-3 border" style="display: flex;">
+				<div class="container p-3">
+					<img src="images/about.jpg" width="500px" height="100px">
 				</div>
-				<hr>
-				<div class="row">
-					<div class="col-md-4">
-						<input type="submit" class="btn btn-light" value="답변">
-					</div>
+				
+				<div class="container p-3">
+					<p>모임명 : <a href="getClubBoard.do?no=${club.no}">${club.title}</a></p>
+					<p>개설자 : ${club.id}</p>
+					<p>마감일 : ${club.dueDate}</p>
+					<c:if test="${logId.id eq club.id || logId.id eq 'admin'}">
+						<button class="btn btn-success btn-sm" onclick="confirmDeleteClub(${club.no})">모임삭제</button>
+					</c:if>
 				</div>
-			</form>
-		</c:if>
+			</div>
+		</c:forEach>
+		<a class="btn btn-dark btn-sm" href="createClubBoard.jsp">모임만들기</a>&nbsp;
+		<a class="btn btn-dark btn-sm" href="main.jsp">메인으로</a>
 	</div>
 </body>
 
+	<script>
+		function validateSearch() {
+			var searchContent = document.getElementById("searchContent").value;
+
+			if (searchContent.trim() === "") {
+				window.location.href = "getClubBoardList.do?";
+				return false;
+			}
+			return true;
+		}
+		
+		function confirmDeleteClub(clubNo) {
+		    const userConfirmed = confirm("정말로 모임을 삭제하시겠습니까?");
+
+		    if (userConfirmed) {
+		        deleteClubBoard(clubNo);
+		    }
+		}
+
+		function deleteClubBoard(clubNo) {
+			$.ajax({
+				url : "deleteClubBoard.do",
+				type : "POST",
+				data : {
+					'no' : clubNo
+				},
+				dataType : 'text',
+				success : function(data) {
+					if (data=="success") {
+						alert("모임이 삭제되었습니다.");
+						location.reload();
+					}
+				}
+			});
+		}
+
+	</script>
 </html>

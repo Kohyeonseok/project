@@ -50,8 +50,9 @@
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+				<li class="nav-item"><a class="nav-link" href="getClubBoardList.do">CLUB</a></li>
 				<c:if test="${logId.id ne 'admin' }">
-				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+					<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
 				</c:if>
 			</ul>
 		</nav>
@@ -233,9 +234,9 @@
 							value="${board.category }"> <input type="hidden"
 							name="reportBoardNo" value="${board.no }"> <select
 							name="reportCategory" class="form-control">
-							<option value="cussword">욕설</option>
-							<option value="meandering">사행성</option>
-							<option value="innocent">허위사실</option>
+							<option value="욕설">욕설</option>
+							<option value="사행성">사행성</option>
+							<option value="허위사실">허위사실</option>
 						</select> <br> <input type="text" class="form-control mr-sm-2"
 							name="reportContent" id="reportContent"
 							placeholder="신고내용을 입력하세요."><br>

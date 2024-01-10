@@ -52,7 +52,8 @@
 						<th class="col-1">게시판</th>
 						<th class="col-1">번호</th>
 						<th class="col-1">작성자</th>
-						<th class="col-4">신고내용</th>
+						<th class="col-1">신고구분</th>
+						<th class="col-3">신고내용</th>
 						<th class="col-2">신고일</th>
 						<th class="col-1">글삭제</th>
 						<th class="col-1">처리</th>
@@ -65,6 +66,7 @@
 							<td>${post.reportBoardCategory }</td>
 							<td>${post.reportBoardNo }</td>
 							<td>${post.reportId }</td>
+							<td>${post.reportCategory }
 							<td>${post.reportContent }</td>
 							<td>${post.reportWtime }</td>
 							<td><a class="btn btn-dark btn-sm" href="adminDeleteBoard.do?no=${post.reportBoardNo}&category=${post.reportBoardCategory}">삭제</a>

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wonder.www.biz.board.BoardService;
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.clubVO.ClubVO;
 import com.wonder.www.biz.qnaVO.QnAVO;
 import com.wonder.www.biz.replyVO.ReplyVO;
 
@@ -133,7 +134,7 @@ public class BoardController {
 	@RequestMapping("/report.do")
 	public ModelAndView reportBoard(BoardVO vo,ModelAndView mav) {
 		boardService.reportBoard(vo);
-		mav.setViewName("redirect:getHikingBoardList.do");
+		mav.setViewName("redirect:getBoardList.do?category="+vo.getReportBoardCategory());
 		return mav;
 	}
 	
@@ -186,4 +187,72 @@ public class BoardController {
 		return mav;
 	}
 	
+	@RequestMapping("/getClubBoardList.do")
+	public ModelAndView getClubBoardList(ClubVO vo,ModelAndView mav) {
+		mav.addObject("clubBoard",boardService.getClubBoardList(vo));
+		mav.setViewName("clubBoardList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/createOkClubBoard.do")
+	public ModelAndView createOkClubBoard(ClubVO vo,ModelAndView mav) throws IllegalStateException, IOException {
+		
+		MultipartFile uploadFile = vo.getUploadFile();
+		
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			long timestamp = System.currentTimeMillis();
+			String newFileName = timestamp+"_"+fileName;
+			vo.setFileName(newFileName);
+			uploadFile.transferTo(new File("/Users/hyeonseok/Desktop/spring/Project_Test1/src/main/webapp/uploadFile/" + newFileName));
+		}
+		
+		boardService.createOkClubBoard(vo);
+		mav.setViewName("redirect:getClubBoardList.do");
+		return mav;
+	}
+	
+	@RequestMapping("/getClubBoard.do")
+	public ModelAndView getClubBoard(ClubVO vo , ModelAndView mav) {
+		mav.addObject("clubBoard",boardService.getClubBoard(vo));
+		mav.addObject("members",boardService.getClubMembers(vo));
+		mav.setViewName("clubBoard.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/joinClub.do")
+	public void joinClub(ClubVO vo,HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		if(boardService.getClubMember(vo)==null) {
+			boardService.joinClub(vo);			
+			out.write("success");
+		}else {
+			out.write("fail");
+		}
+	}
+	
+	@RequestMapping("/cancleClub.do")
+	public void cancleClub(ClubVO vo,HttpServletResponse response ) throws IOException {
+		PrintWriter out = response.getWriter();
+		if(boardService.getClubMember(vo)!=null) {
+			boardService.cancleClub(vo);			
+			out.write("success");
+		}else {
+			out.write("fail");
+		}
+	}
+	
+	@RequestMapping("/searchClubBoard.do")
+	public ModelAndView searchClubBoard(ClubVO vo,ModelAndView mav) {
+		mav.addObject("clubBoard",boardService.searchClubBoard(vo));
+		mav.setViewName("clubBoardList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/deleteClubBoard.do")
+	public void deleteClubBoard(ClubVO vo,HttpServletResponse response ) throws IOException {
+		PrintWriter out = response.getWriter();
+		boardService.deleteClubBoard(vo);
+		out.write("success");
+	}
 }

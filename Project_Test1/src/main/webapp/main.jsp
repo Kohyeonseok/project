@@ -50,42 +50,44 @@
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+				<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
 				<c:if test="${logId.id ne 'admin' }">
-				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+					<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
 				</c:if>
 			</ul>
 		</nav>
 	</div>
 	<div class="container">
-	<div id="demo" class="carousel slide" data-ride="carousel">
+		<div id="demo" class="carousel slide" data-ride="carousel">
 
-		<!-- Indicators -->
-		<ul class="carousel-indicators">
-			<li data-target="#demo" data-slide-to="0" class="active"></li>
-			<li data-target="#demo" data-slide-to="1"></li>
-			<li data-target="#demo" data-slide-to="2"></li>
-		</ul>
+			<!-- Indicators -->
+			<ul class="carousel-indicators">
+				<li data-target="#demo" data-slide-to="0" class="active"></li>
+				<li data-target="#demo" data-slide-to="1"></li>
+				<li data-target="#demo" data-slide-to="2"></li>
+			</ul>
 
-		<!-- The slideshow -->
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="images/main1.jpg" width="1100" height="500">
+			<!-- The slideshow -->
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="images/main1.jpg" width="1100" height="500">
+				</div>
+				<div class="carousel-item">
+					<img src="images/main3.jpg" alt="New York" width="1100"
+						height="500">
+				</div>
+				<div class="carousel-item">
+					<img src="images/hiking.jpg" width="1100" height="500">
+				</div>
 			</div>
-			<div class="carousel-item">
-				<img src="images/main3.jpg" alt="New York" width="1100" height="500">
-			</div>
-			<div class="carousel-item">
-				<img src="images/hiking.jpg" width="1100" height="500">
-			</div>
+
+			<!-- Left and right controls -->
+			<a class="carousel-control-prev" href="#demo" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</a>
 		</div>
-
-		<!-- Left and right controls -->
-		<a class="carousel-control-prev" href="#demo" data-slide="prev"> <span
-			class="carousel-control-prev-icon"></span>
-		</a> <a class="carousel-control-next" href="#demo" data-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		</a>
-	</div>
 	</div>
 
 </body>

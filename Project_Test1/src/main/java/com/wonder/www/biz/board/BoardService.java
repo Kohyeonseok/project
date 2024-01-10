@@ -3,6 +3,7 @@ package com.wonder.www.biz.board;
 import java.util.List;
 
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.clubVO.ClubVO;
 import com.wonder.www.biz.qnaVO.QnAVO;
 import com.wonder.www.biz.replyVO.ReplyVO;
 
@@ -45,4 +46,22 @@ public interface BoardService {
 	QnAVO getQnABoard(QnAVO vo);
 	
 	void writeQnAReply(QnAVO vo);
+	
+	List<ClubVO> getClubBoardList(ClubVO vo);
+	
+	void createOkClubBoard(ClubVO vo);
+	
+	ClubVO getClubBoard(ClubVO vo);
+	
+	List<ClubVO> getClubMembers(ClubVO vo);
+	
+	void joinClub(ClubVO vo);
+	
+	ClubVO getClubMember(ClubVO vo);
+	
+	void cancleClub(ClubVO vo);
+	
+	List<ClubVO> searchClubBoard(ClubVO vo);
+	
+	void deleteClubBoard(ClubVO vo);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.clubVO.ClubVO;
 import com.wonder.www.biz.qnaVO.QnAVO;
 import com.wonder.www.biz.replyVO.ReplyVO;
 
@@ -111,6 +112,51 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void writeQnAReply(QnAVO vo) {
 		boardDAO.writeQnAReply(vo);
+	}
+
+	@Override
+	public List<ClubVO> getClubBoardList(ClubVO vo) {
+		return boardDAO.getClubBoardList(vo);
+	}
+
+	@Override
+	public void createOkClubBoard(ClubVO vo) {
+		boardDAO.createOkClubBoard(vo);
+	}
+
+	@Override
+	public ClubVO getClubBoard(ClubVO vo) {
+		return boardDAO.getClubBoard(vo);
+	}
+
+	@Override
+	public List<ClubVO> getClubMembers(ClubVO vo) {
+		return boardDAO.getClubMembers(vo);
+	}
+
+	@Override
+	public void joinClub(ClubVO vo) {
+		boardDAO.joinClub(vo);
+	}
+
+	@Override
+	public ClubVO getClubMember(ClubVO vo) {
+		return boardDAO.getClubMember(vo);
+	}
+
+	@Override
+	public void cancleClub(ClubVO vo) {
+		boardDAO.cancleClub(vo);
+	}
+
+	@Override
+	public List<ClubVO> searchClubBoard(ClubVO vo) {
+		return boardDAO.searchClubBoard(vo);
+	}
+
+	@Override
+	public void deleteClubBoard(ClubVO vo) {
+		boardDAO.deleteClubBoard(vo);
 	}
 
 }

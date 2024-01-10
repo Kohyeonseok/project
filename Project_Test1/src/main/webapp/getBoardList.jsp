@@ -50,8 +50,9 @@
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
 				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+				<li class="nav-item"><a class="nav-link" href="getClubBoardList.do">CLUB</a></li>
 				<c:if test="${logId.id ne 'admin' }">
-				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+					<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
 				</c:if>
 			</ul>
 		</nav>

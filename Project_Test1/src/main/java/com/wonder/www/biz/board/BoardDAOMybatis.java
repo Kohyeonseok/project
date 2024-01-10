@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wonder.www.biz.boardVO.BoardVO;
+import com.wonder.www.biz.clubVO.ClubVO;
 import com.wonder.www.biz.qnaVO.QnAVO;
 import com.wonder.www.biz.replyVO.ReplyVO;
 
@@ -96,5 +97,41 @@ public class BoardDAOMybatis {
 		mybatis.update("BoardDAO.updateStepNum",vo);
 		mybatis.insert("BoardDAO.writeQnAReply",vo);
 		mybatis.update("BoardDAO.updateResult",vo);
+	}
+	
+	public List<ClubVO> getClubBoardList(ClubVO vo){
+		return mybatis.selectList("BoardDAO.getClubBoardList",vo);
+	}
+	
+	public void createOkClubBoard(ClubVO vo) {
+		mybatis.insert("BoardDAO.createOkClubBoard",vo);
+	}
+	
+	public ClubVO getClubBoard(ClubVO vo) {
+		return mybatis.selectOne("BoardDAO.getClubBoard",vo);
+	}
+	
+	public List<ClubVO> getClubMembers(ClubVO vo) {
+		return mybatis.selectList("BoardDAO.getClubMembers",vo);
+	}
+	
+	public void joinClub(ClubVO vo) {
+		mybatis.insert("BoardDAO.joinClub",vo);
+	}
+	
+	public ClubVO getClubMember(ClubVO vo) {
+		return mybatis.selectOne("BoardDAO.getClubMember",vo);
+	}
+	
+	public void cancleClub(ClubVO vo) {
+		mybatis.delete("BoardDAO.cancleClub",vo);
+	}
+	
+	public List<ClubVO> searchClubBoard(ClubVO vo){
+		return mybatis.selectList("BoardDAO.searchClubBoard",vo);
+	}
+	
+	public void deleteClubBoard(ClubVO vo) {
+		mybatis.delete("BoardDAO.deleteClubBoard",vo);
 	}
 }

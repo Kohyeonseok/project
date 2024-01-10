@@ -9,6 +9,7 @@
 		<typeAlias type="com.wonder.www.biz.userVO.UserVO" alias="user"></typeAlias>
 		<typeAlias type="com.wonder.www.biz.replyVO.ReplyVO" alias="reply"></typeAlias>
 		<typeAlias type="com.wonder.www.biz.qnaVO.QnAVO" alias="qna"></typeAlias>
+		<typeAlias type="com.wonder.www.biz.clubVO.ClubVO" alias="club"></typeAlias>
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정--> 
