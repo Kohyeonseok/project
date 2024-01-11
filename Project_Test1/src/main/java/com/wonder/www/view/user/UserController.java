@@ -20,6 +20,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping("/index.do")
+	public ModelAndView index(ModelAndView mav) {
+		mav.setViewName("redirect:index.jsp");
+		return mav;
+	}
+	
 	@RequestMapping("/join.do")
 	public ModelAndView insertUser(UserVO vo,ModelAndView mav) {
 		userService.insertUser(vo);
@@ -99,6 +105,28 @@ public class UserController {
 	public ModelAndView adminDeleteUser(UserVO vo, ModelAndView mav) {
 		userService.adminDeleteUser(vo);
 		mav.setViewName("redirect:getUserList.do");
+		return mav;
+	}
+	
+	@RequestMapping("/adminThrowCaution.do")
+	public ModelAndView adminThrowCaution(UserVO vo, ModelAndView mav) {
+		userService.adminThrowCaution(vo);
+		mav.setViewName("redirect:getUserList.do");
+		return mav;
+	}
+	@RequestMapping("/exitUser.do")
+	public void exitUser(UserVO vo, HttpServletResponse response,HttpSession session) throws IOException {
+		System.out.println("test");
+		PrintWriter out = response.getWriter();
+		userService.deleteUser(vo);
+		session.removeAttribute("logId");
+		out.write("");
+	}
+	
+	@RequestMapping("/getUserInfo.do")
+	public ModelAndView getUserInfo(UserVO vo,ModelAndView mav) {
+		mav.addObject("user",userService.getUserInfo(vo));
+		mav.setViewName("getUserInfo.jsp");
 		return mav;
 	}
 

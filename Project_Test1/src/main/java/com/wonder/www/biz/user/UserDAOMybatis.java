@@ -49,4 +49,11 @@ public class UserDAOMybatis {
 		return mybatis.selectList("UserDAO.getUserList");
 	}
 	
+	public void adminThrowCaution(UserVO vo) {
+		mybatis.update("UserDAO.adminThrowCaution",vo);
+	}
+	
+	public UserVO getUserInfo(UserVO vo) {
+		return mybatis.selectOne("UserDAO.getUserInfo",vo);
+	}
 }

@@ -5,7 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>G O R P . C O M</title>
+<link rel="icon" href="images/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -16,6 +21,13 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+	body{
+		background-color : rgba(128, 128, 128, 0.5);
+				font-family: 'Commissioner', sans-serif;
+		
+	}
+</style>
 </head>
 <body>
 	<c:if test="${logId.id ne 'admin' }" var="result">
@@ -43,18 +55,25 @@
 			<a class="navbar-brand" href="main.jsp"> <img
 				src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
+			
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
 			<!-- Links -->
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
-				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
-				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
-				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
-				<li class="nav-item"><a class="nav-link" href="getClubBoardList.do">CLUB</a></li>
-				<c:if test="${logId.id ne 'admin' }">
-					<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
-				</c:if>
-			</ul>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<!-- Links -->
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+					<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
+					<c:if test="${logId.id ne 'admin' }">
+						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+					</c:if>
+				</ul>
+			</div>
 		</nav>
 	</div>
 	<div class="container my-3">
@@ -70,9 +89,9 @@
 	</div>
 	<div class="container">
 		<c:forEach var="club" items="${clubBoard}">
-			<div class="container my-3 border" style="display: flex;">
+			<div class="container my-3 border d-flex flex-column flex-md-row" style="background-color : white;">
 				<div class="container p-3">
-					<img src="images/about.jpg" width="500px" height="100px">
+					<img src="images/about.jpg" width="100%" height="100px">
 				</div>
 				
 				<div class="container p-3">
@@ -80,7 +99,7 @@
 					<p>개설자 : ${club.id}</p>
 					<p>마감일 : ${club.dueDate}</p>
 					<c:if test="${logId.id eq club.id || logId.id eq 'admin'}">
-						<button class="btn btn-success btn-sm" onclick="confirmDeleteClub(${club.no})">모임삭제</button>
+						<button class="btn btn-dark btn-sm" onclick="confirmDeleteClub(${club.no})">모임삭제</button>
 					</c:if>
 				</div>
 			</div>

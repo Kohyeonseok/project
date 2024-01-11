@@ -53,4 +53,14 @@ public class UserServiceImpl implements UserService {
 		userDAO.deleteUser(vo);
 	}
 
+	@Override
+	public void adminThrowCaution(UserVO vo) {
+		userDAO.adminThrowCaution(vo);
+	}
+
+	@Override
+	public UserVO getUserInfo(UserVO vo) {
+		return userDAO.getUserInfo(vo);
+	}
+
 }

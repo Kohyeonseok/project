@@ -5,7 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>G O R P . C O M</title>
+<link rel="icon" href="images/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap" rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -16,10 +22,17 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="jq/jquery.js"></script>
+<style>
+	body{
+		background-color : rgba(128, 128, 128, 0.5);
+				font-family: 'Commissioner', sans-serif;
+		
+	}
+</style>
 </head>
 <body>
 
-	<div class="container p-3 my-3 border">
+	<div class="container p-3 my-3 border" style="background-color: white;">
 		<h3>ACCOUNT</h3>
 	</div>
 
@@ -54,7 +67,7 @@
 		<a href="index.jsp">취소</a>
 	</div> -->
 
-	<div class="container pt-3 border">
+	<div class="container pt-3 border" style="background-color: white;">
 		<form action="join.do" method="post" onsubmit="return check()">
 			<div class="form-group col-6">
 				<label for="name">이름</label> 
@@ -92,7 +105,7 @@
 
 			<div class="form-group col-6">
 				<label for="sample4_postcode">주소</label><br> 
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+				<input class="btn btn-light btn-sm" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 				<input type="text" class="form-control" name="sample4_postcode" id="sample4_postcode" placeholder="우편번호"><br>
 				<input type="text" class="form-control" name="sample4_roadAddress" id="sample4_roadAddress" placeholder="도로명주소"><br>
 				<input type="text" class="form-control" name="sample4_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소"><br> 

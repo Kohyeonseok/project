@@ -14,6 +14,14 @@ public class UserVO {
 	private String sample4_extraAddress;
 	private String phoneNum;
 	private String gender;
+	private String caution;
+	
+	public String getCaution() {
+		return caution;
+	}
+	public void setCaution(String caution) {
+		this.caution = caution;
+	}
 	public String getName() {
 		return name;
 	}

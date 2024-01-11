@@ -49,6 +49,17 @@
 		]]>
 	</select>
 	
+	<update id="adminThrowCaution">
+		<![CDATA[
+			UPDATE USER SET CAUTION=CAUTION+1 WHERE ID=#{id}
+		]]>
+	</update>
+	
+	<select id="getUserInfo" resultType="user">
+		<![CDATA[
+			SELECT * FROM USER WHERE ID=#{id}
+		]]>
+	</select>
 	
 
 </mapper>

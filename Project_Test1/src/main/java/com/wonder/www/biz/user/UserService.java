@@ -21,4 +21,8 @@ public interface UserService {
 	List<UserVO> getUserList();
 	
 	void adminDeleteUser(UserVO vo);
+	
+	void adminThrowCaution(UserVO vo);
+	
+	UserVO getUserInfo(UserVO vo);
 }

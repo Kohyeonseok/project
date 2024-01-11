@@ -5,7 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>G O R P . C O M</title>
+<link rel="icon" href="images/logo.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap" rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -15,12 +22,18 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<style>
+body {
+	background-color: rgba(128, 128, 128, 0.5);
+			font-family: 'Commissioner', sans-serif;
+	
+}
+</style>
 </head>
 <body>
-<div class="container">
-		${logId.id}님 안녕하세요. <br> 
-		<a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a>
+	<div class="container">
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
+			href="logout.do">LOGOUT</a>
 	</div>
 
 	<div class="container p-3 my-3">
@@ -31,61 +44,86 @@
 			<a class="navbar-brand" href="main.jsp"> <img
 				src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
-
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 			<!-- Links -->
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
-				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
-				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
-				<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
-				<c:if test="${logId.id ne 'admin' }">
-				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
-				</c:if>
-			</ul>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<!-- Links -->
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link"
+						href="getBoardList.do?category=hiking">HIKING</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getBoardList.do?category=camping">CAMPING</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getBoardList.do?category=free">FREE</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getBoardList.do?category=market">MARKET</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getClubBoardList.do?">CLUB</a></li>
+					<c:if test="${logId.id ne 'admin' }">
+						<li class="nav-item"><a class="nav-link"
+							href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+					</c:if>
+				</ul>
+			</div>
 		</nav>
 	</div>
-	<div class="container p-3 my-3 border">
+	<div class="container pt-3 my-3 border" style="background-color: white;">
 		<form action="modify.do" action="post" onsubmit="return check()">
-			이름 <br> 
-			<input type="text" name="name" id="name" value="${logId.name}"><br>
-			<br> 
-			아이디<br> 
-			<input type="text" name="id" value="${logId.id}" readonly="readonly">
-			<br><br> 
-			닉네임 <br> 
-			<input type="text" name="nickName" id="nickName" value="${logId.nickName}"><br><br> 
-			비밀번호 <br> 
-			<input type="password" name="password" id="password"><br>
-			<br> 
-			비밀번호 확인 <br> 
-			<input type="password"
-				name="passwordCheck" id="passwordCheck"><br>
-			<br> 
-			이메일 <br> 
-			<input type="email" name="email" id="email" value="${logId.email}" readonly="readonly"><br>
-			<br> 
-			주소 <br> 
-			<input type="text" name="sample4_postcode" id="sample4_postcode" value="${logId.sample4_postcode}" placeholder="우편번호"> 
-			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-			<input type="text" name="sample4_roadAddress" id="sample4_roadAddress" value="${logId.sample4_roadAddress}" placeholder="도로명주소"> 
-			<input type="text" name="sample4_jibunAddress" id="sample4_jibunAddress" value="${logId.sample4_jibunAddress}"  placeholder="지번주소"> 
+		<div class="form-group col-6">
+			<label for="name">이름</label><br> 
+			<input type="text" class="form-control" name="name" id="name" value="${logId.name}">
+		</div>
+		<div class="form-group col-6">	
+			<label for="id">아이디</label><br> 
+			<input type="text" class="form-control" name="id" value="${logId.id}" readonly="readonly">
+		</div>	 
+		<div class="form-group col-6">
+			<label for="nickName">닉네임</label><br> 
+			<input type="text" class="form-control" name="nickName" id="nickName" value="${logId.nickName}">
+		</div>
+		<div class="form-group col-6">	 
+			<label for="password">비밀번호</label><br> 
+			<input type="password" class="form-control" name="password" id="password">
+		</div>
+		<div class="form-group col-6">	 
+			<label for="passwordCheck">비밀번호 확인</label><br> 
+			<input type="password" class="form-control" name="passwordCheck" id="passwordCheck">
+		</div>
+		<div class="form-group col-6">	 
+			<label for="email">이메일</label><br> 
+			<input type="email" class="form-control" name="email" id="email" value="${logId.email}" readonly="readonly">
+		</div>
+		<div class="form-group col-6">	 
+			<label for="sample4_postcode">주소</label><br> 
+			<input class="btn btn-light btn-sm" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+			<input type="text" class="form-control"name="sample4_postcode" id="sample4_postcode" value="${logId.sample4_postcode}" placeholder="우편번호"><br>
+			<input type="text" class="form-control" name="sample4_roadAddress" id="sample4_roadAddress" value="${logId.sample4_roadAddress}" placeholder="도로명주소"><br>
+			<input type="text" class="form-control" name="sample4_jibunAddress" id="sample4_jibunAddress" value="${logId.sample4_jibunAddress}" placeholder="지번주소"><br> 
 			<span id="guide" style="color: #999; display: none"></span> 
-			<input type="text" name="sample4_detailAddress" id="sample4_detailAddress" value="${logId.sample4_detailAddress}" placeholder="상세주소"> 
-			<input type="text" name="sample4_extraAddress" id="sample4_extraAddress" value="${logId.sample4_extraAddress }" placeholder="참고항목">
-			<br>
-			<br> 
-			전화번호 <br> 
-			<input type="text" name="phoneNum"	id="phoneNum" value="${logId.phoneNum}" >
-			<br>
-			<br> 
-			성별 <br> 
-			<input type="radio" name="gender" id="gender" value="male" ${logId.gender eq "male" ? 'checked' : '' }>남 
-			<input type="radio" name="gender" id="gender" value="female" ${logId.gender eq "female" ? 'checked' : '' }>여
-			<br> 
+			<input type="text" class="form-control" name="sample4_detailAddress" id="sample4_detailAddress" value="${logId.sample4_detailAddress}" placeholder="상세주소"> <br>
+			<input type="text" class="form-control" name="sample4_extraAddress" id="sample4_extraAddress" value="${logId.sample4_extraAddress }" placeholder="참고항목"><br>
+		</div>
+		<div class="form-group col-6">	 
+			<label for="phoneNum">전화번호</label><br> 
+			<input type="text" class="form-control" name="phoneNum" id="phoneNum" value="${logId.phoneNum}"><br>
+		</div>
+		<div class="form-group col-6">	 
+			<label for="gender">성별</label><br>
+			<div class="form-check form-check-inline">
+				<input type="radio" class="form-check-input" name="gender" id="gender" value="male" ${logId.gender eq "male" ? 'checked' : '' }>
+				<label class="form-check-label" for="male">남</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input type="radio" class="form-check-input" name="gender" id="gender" value="female" ${logId.gender eq "female" ? 'checked' : '' }>
+				<label class="form-check-label" for="female">여</label>
+			</div>
+		</div>	 
 			<input class="btn btn-dark btn-sm" type="submit" value="정보수정">
 		</form>
-		<br>
-		<a class="btn btn-dark btn-sm" href="main.jsp">취소</a>&nbsp;
+		<br> <a class="btn btn-dark btn-sm" href="main.jsp">취소</a>&nbsp;
 		<a class="btn btn-dark btn-sm" href="deleteUser.do?id=${logId.id}">탈퇴</a>
 	</div>
 
@@ -174,8 +212,6 @@
 			}
 
 		}
-		
-		
 	</script>
 
 

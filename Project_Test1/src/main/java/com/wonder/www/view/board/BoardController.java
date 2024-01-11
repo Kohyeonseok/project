@@ -145,6 +145,7 @@ public class BoardController {
 		return mav;
 	}
 	
+	
 	@RequestMapping("/adminDeleteBoard.do")
 	public ModelAndView adminDeleteBoard(BoardVO vo,ModelAndView mav) {
 		boardService.adminDeleteBoard(vo);

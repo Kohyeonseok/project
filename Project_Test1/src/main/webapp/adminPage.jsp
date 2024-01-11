@@ -5,7 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>G O R P . C O M</title>
+<link rel="icon" href="images/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap" rel="stylesheet">
+
+
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -16,6 +23,12 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
+<style>
+	body{
+		background-color : rgba(128, 128, 128, 0.5);
+			font-family: 'Commissioner', sans-serif;
+	}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -26,14 +39,18 @@
 	</div>
 
 	<div class="container p-3 my-3">
-		<h3>Admin Page</h3>
+		<h3>ADMIN PAGE</h3>
 	</div>
 	<div class="container my-3">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<a class="navbar-brand" href="main.jsp"> <img
 				src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
-
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- Links -->
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<!-- Links -->
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link"
@@ -43,6 +60,7 @@
 				<li class="nav-item"><a class="nav-link"
 					href="getUserList.do">USERList</a></li>
 			</ul>
+			</div>
 		</nav>
 	</div>
 	<div class="container my-3">

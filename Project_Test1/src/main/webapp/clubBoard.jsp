@@ -5,7 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>G O R P . C O M</title>
+<link rel="icon" href="images/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap" rel="stylesheet">
+
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -16,6 +22,13 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+	body{
+		background-color : rgba(128, 128, 128, 0.5);
+		
+			font-family: 'Commissioner', sans-serif;
+	}
+</style>
 </head>
 <body>
 	<c:if test="${logId.id ne 'admin' }" var="result">
@@ -43,28 +56,27 @@
 			<a class="navbar-brand" href="main.jsp"> <img
 				src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
-
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 			<!-- Links -->
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					href="getBoardList.do?category=hiking">HIKING</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="getBoardList.do?category=camping">CAMPING</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="getBoardList.do?category=free">FREE</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="getBoardList.do?category=market">MARKET</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="getClubBoardList.do">CLUB</a></li>
-				<c:if test="${logId.id ne 'admin' }">
-					<li class="nav-item"><a class="nav-link"
-						href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
-				</c:if>
-			</ul>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<!-- Links -->
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+					<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
+					<c:if test="${logId.id ne 'admin' }">
+						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+					</c:if>
+				</ul>
+			</div>
 		</nav>
 	</div>
 	<div class="container">
-		<div class="container my-3 text-center">
+		<div class="container my-3 text-center" style="background-color : white;">
 			<h1>${clubBoard.title}</h1>
 			<img src="uploadFile/${clubBoard.fileName }" width="500px">
 			<p>${clubBoard.content}</p>
@@ -74,12 +86,12 @@
 		<div class="container">
 			<h3>참여인원</h3>
 			<c:forEach var="member" items="${members }">
-				<span>${member.id}</span>
+				<span><a class="btn btn-dark btn-sm" onclick="userInfo('${member.id}')">${member.id}</a></span>
 			</c:forEach>
 		</div>
 		<hr>
-		<a class="btn btn-dark btn-sm" onclick="joinClub()">참여하기</a>
-		<a class="btn btn-danger btn-sm" onclick="cancleClub()">취소하기</a>
+		<a class="btn btn-dark btn-sm" onclick="joinClub()">참여하기</a> <a
+			class="btn btn-danger btn-sm" onclick="cancleClub()">취소하기</a>
 	</div>
 	<input type="hidden" name="logId" id="logId" value="${logId.id }">
 	<input type="hidden" name="no" id="no" value="${clubBoard.no }">
@@ -87,11 +99,11 @@
 
 </body>
 <script>
-	function joinClub(){
-		
+	function joinClub() {
+
 		let logId = document.getElementById("logId").value;
 		let no = document.getElementById("no").value;
-		
+
 		$.ajax({
 			url : "joinClub.do",
 			type : "POST",
@@ -101,7 +113,7 @@
 			},
 			dataType : 'text',
 			success : function(data) {
-				if (data=="success") {
+				if (data == "success") {
 					alert("참여신청이 완료되었습니다.");
 					location.reload();
 				} else {
@@ -110,12 +122,12 @@
 			}
 		});
 	}
-	
-	function cancleClub(){
-		
+
+	function cancleClub() {
+
 		let logId = document.getElementById("logId").value;
 		let no = document.getElementById("no").value;
-		
+
 		$.ajax({
 			url : "cancleClub.do",
 			type : "POST",
@@ -125,7 +137,7 @@
 			},
 			dataType : 'text',
 			success : function(data) {
-				if (data=="success") {
+				if (data == "success") {
 					alert("참여 취소가 완료되었습니다.");
 					location.reload();
 				} else {
@@ -135,6 +147,9 @@
 		});
 	}
 	
+	function userInfo(memberId){
+		window.open('getUserInfo.do?id='+memberId,'UserInfo','width=400, height=400');
+	}
 </script>
 
 
