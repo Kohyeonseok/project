@@ -86,11 +86,11 @@
 			<hr>
 				<div class="row">
 					<div class="col-md-4">
-						<a class="btn btn-dark btn-block btn-sm" href="getClubBoardList.do">목록</a>
-					</div>
-					<div class="col-md-4">
 						<input class="btn btn-dark btn-block btn-sm" type="submit" value="모임만들기">
 					</div> 
+					<div class="col-md-4">
+						<a class="btn btn-dark btn-block btn-sm" href="getClubBoardList.do">목록</a>
+					</div>
 				</div>
 		</form>
 	</div>

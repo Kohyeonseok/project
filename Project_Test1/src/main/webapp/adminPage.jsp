@@ -42,8 +42,8 @@
 	</div>
 	<div class="container my-3">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-			<a class="navbar-brand" href="main.jsp"> <img
-				src="images/logo.png" alt="Logo" style="width: 40px;">
+			<a class="navbar-brand" href="main.jsp"> 
+			<img src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
@@ -60,7 +60,7 @@
 		</nav>
 	</div>
 	<div class="container my-3">
-		<img src="images/camp.jpg" style="max-width: 100%; height:100%;">
+		<img src="images/camp.jpg" style="max-width: 100%; height:70%;">
 	</div>
 
 </body>

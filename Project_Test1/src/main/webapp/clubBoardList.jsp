@@ -91,13 +91,13 @@
 		<c:forEach var="club" items="${clubBoard}">
 			<div class="container my-3 border d-flex flex-column flex-md-row" style="background-color : white;">
 				<div class="container p-3">
-					<img src="images/about.jpg" width="100%" height="100px">
+					<img src="uploadFile/${club.fileName}" width="100%" height="100px">
 				</div>
 				
 				<div class="container p-3">
 					<p>모임명 : <a href="getClubBoard.do?no=${club.no}">${club.title}</a></p>
 					<p>개설자 : ${club.id}</p>
-					<p>마감일 : ${club.dueDate}</p>
+					<span>마감일 : ${club.dueDate}</span>&nbsp; &nbsp;
 					<c:if test="${logId.id eq club.id || logId.id eq 'admin'}">
 						<button class="btn btn-dark btn-sm" onclick="confirmDeleteClub(${club.no})">모임삭제</button>
 					</c:if>

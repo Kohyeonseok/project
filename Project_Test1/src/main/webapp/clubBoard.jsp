@@ -78,7 +78,7 @@
 	<div class="container">
 		<div class="container my-3 text-center" style="background-color : white;">
 			<h1>${clubBoard.title}</h1>
-			<img src="uploadFile/${clubBoard.fileName }" width="500px">
+			<img src="uploadFile/${clubBoard.fileName }" width="500px" height="500px">
 			<p>${clubBoard.content}</p>
 			<p>${clubBoard.dueDate}까지</p>
 		</div>
@@ -90,8 +90,10 @@
 			</c:forEach>
 		</div>
 		<hr>
-		<a class="btn btn-dark btn-sm" onclick="joinClub()">참여하기</a> <a
-			class="btn btn-danger btn-sm" onclick="cancleClub()">취소하기</a>
+		<c:if test="${clubBoard.id ne logId.id && logId.id ne 'admin'}">
+			<a class="btn btn-dark btn-sm" onclick="joinClub()">참여하기</a> 
+			<a class="btn btn-danger btn-sm" onclick="cancleClub()">취소하기</a>
+		</c:if>
 	</div>
 	<input type="hidden" name="logId" id="logId" value="${logId.id }">
 	<input type="hidden" name="no" id="no" value="${clubBoard.no }">
