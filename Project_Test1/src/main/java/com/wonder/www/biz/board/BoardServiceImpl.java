@@ -159,4 +159,19 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.deleteClubBoard(vo);
 	}
 
+	@Override
+	public int getReportCount(BoardVO vo) {
+		return boardDAO.getReportCount(vo);
+	}
+
+	@Override
+	public int getQnACount(BoardVO vo) {
+		return boardDAO.getQnACount(vo);
+	}
+
+	@Override
+	public int getUserCount(BoardVO vo) {
+		return boardDAO.getUserCount(vo);
+	}
+
 }

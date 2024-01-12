@@ -25,4 +25,10 @@ public interface UserService {
 	void adminThrowCaution(UserVO vo);
 	
 	UserVO getUserInfo(UserVO vo);
+	
+	int getReportCount(UserVO vo);
+
+	int getQnACount(UserVO vo);
+	
+	int getUserCount(UserVO vo);
 }

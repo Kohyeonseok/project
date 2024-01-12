@@ -45,7 +45,7 @@
 			${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
 				href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
 				href="modify.jsp">MODIFY</a> &nbsp; <a class="btn btn-dark btn-sm"
-				href="adminPage.jsp">ADMINPAGE</a>
+				href="adminPage.do">ADMINPAGE</a>
 		</div>
 	</c:if>
 
@@ -73,7 +73,7 @@
 					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
 					<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
 					<c:if test="${logId.id ne 'admin' }">
-						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">Q&A</a></li>
 					</c:if>
 				</ul>
 			</div>

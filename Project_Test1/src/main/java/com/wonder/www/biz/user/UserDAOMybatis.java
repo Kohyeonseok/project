@@ -56,4 +56,17 @@ public class UserDAOMybatis {
 	public UserVO getUserInfo(UserVO vo) {
 		return mybatis.selectOne("UserDAO.getUserInfo",vo);
 	}
+	
+	public int getReportCount(UserVO vo) {
+		return mybatis.selectOne("UserDAO.getReportCount",vo);
+		
+	}
+	
+	public int getQnACount(UserVO vo) {
+		return mybatis.selectOne("UserDAO.getQnACount",vo);
+	}
+	
+	public int getUserCount(UserVO vo) {
+		return mybatis.selectOne("UserDAO.getUserCount",vo);
+	}
 }

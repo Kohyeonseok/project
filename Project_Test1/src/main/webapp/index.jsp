@@ -51,6 +51,7 @@
 					</c:if>
 					<input class="btn btn-dark btn-sm" type="submit" value="LOGIN">&nbsp; &nbsp;
 				<a class="btn btn-dark btn-sm" href="join.jsp">ACCOUNT</a>
+				
 				</form>
 			</div>
 			<div class="col-7">

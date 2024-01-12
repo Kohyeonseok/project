@@ -64,4 +64,10 @@ public interface BoardService {
 	List<ClubVO> searchClubBoard(ClubVO vo);
 	
 	void deleteClubBoard(ClubVO vo);
+
+	int getReportCount(BoardVO vo);
+
+	int getQnACount(BoardVO vo);
+	
+	int getUserCount(BoardVO vo);
 }

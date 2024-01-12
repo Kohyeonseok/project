@@ -78,11 +78,10 @@
 			</c:if>
 			<c:if test="${logId.id eq 'admin' }">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link"
-						href="getReportBoardList.do">REPORT</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
-					<li class="nav-item"><a class="nav-link" href="getUserList.do">USERList</a></li>
+				<li class="nav-item"><a class="nav-link" href="getReportBoardList.do">REPORT&nbsp;<c:if test="${reportCount ne null}"><span class="badge badge-primary">${reportCount}</span></c:if></a></li>
+				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">Q&A&nbsp;<c:if test="${qnaCount ne null}"><span class="badge badge-primary">${qnaCount}</span></c:if></a></li>
+				<li class="nav-item"><a class="nav-link" href="getUserList.do">USERList&nbsp;<c:if test="${userCount ne null}"><span class="badge badge-primary">${userCount-1}</span></c:if></a></li>
+
 				</ul>
 			</c:if>
 		</nav>
@@ -93,7 +92,7 @@
 			<input type="hidden" name="no" id="no" value="${board.no}">
 			<div class="row">
 				<div class="col-md-12">
-					<table class="table table-bordered table-sm">
+					<table class="table table-bordered table-sm" style="background-color:white;">
 						<tr>
 							<td>제목</td>
 							<td>${board.title}</td>
@@ -126,7 +125,7 @@
 					type="hidden" name="id" value="${logId.id }">
 				<div class="row">
 					<div class="col-md-12">
-						<table class="table table-bordered table-sm">
+						<table class="table table-bordered table-sm" style="background-color:white;">
 							<tr>
 								<td>제목</td>
 								<td><input type="text" name="title"

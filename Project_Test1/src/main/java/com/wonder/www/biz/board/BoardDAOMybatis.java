@@ -134,4 +134,17 @@ public class BoardDAOMybatis {
 	public void deleteClubBoard(ClubVO vo) {
 		mybatis.delete("BoardDAO.deleteClubBoard",vo);
 	}
+	
+	public int getReportCount(BoardVO vo) {
+		return mybatis.selectOne("BoardDAO.getReportCount",vo);
+		
+	}
+	
+	public int getQnACount(BoardVO vo) {
+		return mybatis.selectOne("BoardDAO.getQnACount",vo);
+	}
+	
+	public int getUserCount(BoardVO vo) {
+		return mybatis.selectOne("BoardDAO.getUserCount",vo);
+	}
 }

@@ -16,6 +16,14 @@ public class UserVO {
 	private String gender;
 	private String caution;
 	
+	private int count;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public String getCaution() {
 		return caution;
 	}

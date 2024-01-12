@@ -43,7 +43,7 @@
 			${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
 				href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
 				href="modify.jsp">MODIFY</a> &nbsp; <a class="btn btn-dark btn-sm"
-				href="adminPage.jsp">ADMINPAGE</a>
+				href="adminPage.do">ADMINPAGE</a>
 		</div>
 	</c:if>
 
@@ -69,7 +69,7 @@
 					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
 					<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
 					<c:if test="${logId.id ne 'admin' }">
-						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">Q&A</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -77,11 +77,10 @@
 			<c:if test="${logId.id eq 'admin' }">
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link"
-						href="getReportBoardList.do">REPORT</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
-					<li class="nav-item"><a class="nav-link" href="getUserList.do">USERList</a></li>
+				<li class="nav-item"><a class="nav-link" href="getReportBoardList.do">REPORT&nbsp;<c:if test="${reportCount ne null}"><span class="badge badge-primary">${reportCount}</span></c:if></a></li>
+				<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">Q&A&nbsp;<c:if test="${qnaCount ne null}"><span class="badge badge-primary">${qnaCount}</span></c:if></a></li>
+				<li class="nav-item"><a class="nav-link" href="getUserList.do">USERList&nbsp;<c:if test="${userCount ne null}"><span class="badge badge-primary">${userCount-1}</span></c:if></a></li>
+
 				</ul>
 				</div>
 			</c:if>
@@ -113,7 +112,9 @@
 		</form>
 
 		<hr>
+		<c:if test="${logId.id ne 'admin' }">
 		<a class="btn btn-dark btn-sm" href="writeQnABoard.jsp">글작성</a>&nbsp;
+		</c:if>
 		<a class="btn btn-dark btn-sm" href="main.jsp">메인으로</a>
 	</div>
 </body>

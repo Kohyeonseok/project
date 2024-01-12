@@ -61,5 +61,22 @@
 		]]>
 	</select>
 	
+		<select id="getReportCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM REPORTBOARD
+		]]>
+	</select>
+	
+	<select id="getQnACount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM QNABOARD WHERE RESULT='답변대기'
+		]]>
+	</select>
+	
+	<select id="getUserCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM USER
+		]]>
+	</select>
 
 </mapper>

@@ -70,7 +70,6 @@ public class BoardController {
 		mav.addObject("board",boardService.getBoard(vo));
 		mav.addObject("boardReply",boardService.getBoardReply(vo));
 		mav.addObject("category",vo.getCategory().toUpperCase());
-		System.out.println(mav);
 		mav.setViewName("getBoard.jsp");	
 		return mav;
 	}
@@ -134,13 +133,19 @@ public class BoardController {
 	@RequestMapping("/report.do")
 	public ModelAndView reportBoard(BoardVO vo,ModelAndView mav) {
 		boardService.reportBoard(vo);
+		mav.addObject("reportCount",boardService.getReportCount(vo));
+		mav.addObject("qnaCount",boardService.getQnACount(vo));
+		mav.addObject("userCount",boardService.getUserCount(vo));
 		mav.setViewName("redirect:getBoardList.do?category="+vo.getReportBoardCategory());
 		return mav;
 	}
 	
 	@RequestMapping("/getReportBoardList.do")
-	public ModelAndView getReportBoardList(ModelAndView mav){
+	public ModelAndView getReportBoardList(BoardVO vo,ModelAndView mav){
 		mav.addObject("list",boardService.getReportBoardList());
+		mav.addObject("reportCount",boardService.getReportCount(vo));
+		mav.addObject("qnaCount",boardService.getQnACount(vo));
+		mav.addObject("userCount",boardService.getUserCount(vo));
 		mav.setViewName("reportBoard.jsp");
 		return mav;
 	}
@@ -161,8 +166,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/getQNABoardList.do")
-	public ModelAndView getQNABoard(QnAVO vo, ModelAndView mav) {
+	public ModelAndView getQNABoard(QnAVO vo, BoardVO bo,ModelAndView mav) {
 		mav.addObject("QnAList",boardService.getQNABoardList(vo));
+		mav.addObject("reportCount",boardService.getReportCount(bo));
+		mav.addObject("qnaCount",boardService.getQnACount(bo));
+		mav.addObject("userCount",boardService.getUserCount(bo));
 		mav.setViewName("QNABoardList.jsp");
 		return mav;
 	}
@@ -175,15 +183,21 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/getQnABoard.do")
-	public ModelAndView getQnABoard(QnAVO vo,ModelAndView mav) {
+	public ModelAndView getQnABoard(QnAVO vo,BoardVO bo,ModelAndView mav) {
 		mav.addObject("board",boardService.getQnABoard(vo));
+		mav.addObject("reportCount",boardService.getReportCount(bo));
+		mav.addObject("qnaCount",boardService.getQnACount(bo));
+		mav.addObject("userCount",boardService.getUserCount(bo));
 		mav.setViewName("QNABoard.jsp");
 		return mav;
 	}
 	
 	@RequestMapping("/writeQnAReply.do")
-	public ModelAndView writeQnAReply(QnAVO vo,ModelAndView mav) {
+	public ModelAndView writeQnAReply(QnAVO vo,BoardVO bo,ModelAndView mav) {
 		boardService.writeQnAReply(vo);
+		mav.addObject("reportCount",boardService.getReportCount(bo));
+		mav.addObject("qnaCount",boardService.getQnACount(bo));
+		mav.addObject("userCount",boardService.getUserCount(bo));
 		mav.setViewName("redirect:getQNABoardList.do?id="+vo.getId());
 		return mav;
 	}
@@ -209,6 +223,7 @@ public class BoardController {
 		}
 		
 		boardService.createOkClubBoard(vo);
+		boardService.joinClub(vo);
 		mav.setViewName("redirect:getClubBoardList.do");
 		return mav;
 	}
@@ -255,5 +270,14 @@ public class BoardController {
 		PrintWriter out = response.getWriter();
 		boardService.deleteClubBoard(vo);
 		out.write("success");
+	}
+	
+	@RequestMapping("/adminPage.do")
+	public ModelAndView adminPage(BoardVO vo,ModelAndView mav) {
+		mav.addObject("reportCount",boardService.getReportCount(vo));
+		mav.addObject("qnaCount",boardService.getQnACount(vo));
+		mav.addObject("userCount",boardService.getUserCount(vo));
+		mav.setViewName("adminPage.jsp");
+		return mav;
 	}
 }

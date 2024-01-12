@@ -95,8 +95,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("/getUserList.do")
-	public ModelAndView getUserList(ModelAndView mav) {
+	public ModelAndView getUserList(UserVO vo,ModelAndView mav) {
 		mav.addObject("list",userService.getUserList());
+		mav.addObject("reportCount",userService.getReportCount(vo));
+		mav.addObject("qnaCount",userService.getQnACount(vo));
+		mav.addObject("userCount",userService.getUserCount(vo));
 		mav.setViewName("userList.jsp");
 		return mav;
 	}

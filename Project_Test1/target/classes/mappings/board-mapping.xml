@@ -15,9 +15,9 @@
 	</select>
 
 	<select id="countPost" resultType="int">
-			SELECT COUNT(*) FROM ${category}BOARD
+		SELECT COUNT(*) FROM ${category}BOARD
 	</select>
-	
+
 	<select id="getBoard" resultType="board">
 		<![CDATA[
 			SELECT * FROM ${category}BOARD WHERE NO=#{no}
@@ -109,7 +109,8 @@
 
 	<select id="getQNABoardList" resultType="qna">
 		<if test="id != 'admin'">
-			SELECT * FROM QNABOARD WHERE ID=#{id} OR FORNAME=#{id} ORDER BY groupNum DESC, WTIME ASC
+			SELECT * FROM QNABOARD WHERE ID=#{id} OR FORNAME=#{id}
+			ORDER BY groupNum DESC, WTIME ASC
 		</if>
 		<if test="id == 'admin'">
 			SELECT * FROM QNABOARD ORDER BY groupNum DESC, WTIME ASC
@@ -128,37 +129,37 @@
 			SELECT * FROM QNABOARD WHERE NO=#{no}
 		]]>
 	</select>
-	
+
 	<select id="getCurNum" resultType="int">
 		<![CDATA[
 			SELECT MAX(no) FROM QNABoard
 		]]>
 	</select>
-	
+
 	<update id="updateGroupNum">
 		<![CDATA[
 			UPDATE QNABoard SET GROUPNUM=#{groupNum} WHERE NO=#{groupNum}
 		]]>
 	</update>
-	
+
 	<update id="updateStepNum">
 		<![CDATA[
 			UPDATE QNABoard SET STEPNUM = STEPNUM+1 WHERE GROUPNUM=#{groupNum} AND STEPNUM >= (${stepNum}+1)
 		]]>
 	</update>
-	
+
 	<insert id="writeQnAReply">
 		<![CDATA[
 			INSERT INTO QNABoard (ID,TITLE,CONTENT,GROUPNUM,RESULT,FORNAME) VALUES (#{id},#{title},#{content},#{groupNum},"",#{forName})
 		]]>
 	</insert>
-	
+
 	<update id="updateResult">
 		<![CDATA[
 			UPDATE QNABoard SET RESULT = '답변완료' WHERE NO=#{groupNum}
 		]]>
 	</update>
-		
+
 	<select id="getClubBoardList" resultType="club">
 		<![CDATA[
 			SELECT * FROM CLUBBOARD ORDER BY DUEDATE ASC
@@ -170,37 +171,40 @@
 			INSERT INTO CLUBBOARD (ID,TITLE,CONTENT,FILENAME,DUEDATE) VALUES (#{id},#{title},#{content},#{fileName},#{dueDate})
 		]]>
 	</insert>
-	
+
 	<select id="getClubBoard" resultType="club">
 		<![CDATA[
 			SELECT * FROM CLUBBOARD WHERE NO=#{no}
 		]]>
 	</select>
-	
+
 	<select id="getClubMembers" resultType="club">
 		<![CDATA[
 			SELECT * FROM CLUBMEMBER WHERE NO=#{no}
 		]]>
 	</select>
-	
+
 	<insert id="joinClub">
-		<![CDATA[
+		<if test="no == 0">
+			INSERT INTO CLUBMEMBER (ID, NO) VALUES (#{id}, (SELECT MAX(no) FROM clubBoard));
+		</if>
+		<if test="no != 0">
 			INSERT INTO CLUBMEMBER (NO,ID) VALUES (#{no},#{id})
-		]]>
+		</if>
 	</insert>
-	
+
 	<select id="getClubMember" resultType="club">
 		<![CDATA[
 			SELECT * FROM CLUBMEMBER WHERE NO=#{no} AND ID=#{id}
 		]]>
 	</select>
-	
+
 	<delete id="cancleClub">
 		<![CDATA[
 			DELETE FROM CLUBMEMBER WHERE NO=#{no} AND ID=#{id}
 		]]>
 	</delete>
-	
+
 	<select id="searchClubBoard" resultType="club">
 		SELECT * FROM CLUBBOARD
 		WHERE 1 = 1
@@ -215,10 +219,28 @@
 		</if>
 		ORDER BY DUEDATE DESC
 	</select>
-	
+
 	<delete id="deleteClubBoard">
 		<![CDATA[
 			DELETE FROM CLUBBOARD WHERE NO=#{no}
 		]]>
 	</delete>
+
+	<select id="getReportCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM REPORTBOARD
+		]]>
+	</select>
+
+	<select id="getQnACount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM QNABOARD WHERE RESULT='답변대기'
+		]]>
+	</select>
+
+	<select id="getUserCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM USER
+		]]>
+	</select>
 </mapper>

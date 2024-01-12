@@ -13,15 +13,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap" rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="jq/jquery.js"></script>
+
 <style>
 	body{
 		background-color : rgba(128, 128, 128, 0.5);
@@ -33,18 +30,18 @@
 <body>
 	<c:if test="${logId.id ne 'admin' }" var="result">
 		<div class="container">
-			${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
-				href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
-				href="modify.jsp">MODIFY</a>
+			${logId.id}님 안녕하세요. <br> 
+			<a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
+			<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
 		</div>
 	</c:if>
 
 	<c:if test="${logId.id eq 'admin' }" var="result">
 		<div class="container">
-			${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
-				href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
-				href="modify.jsp">MODIFY</a> &nbsp; <a class="btn btn-dark btn-sm"
-				href="adminPage.jsp">ADMINPAGE</a>
+			${logId.id}님 안녕하세요. <br> 
+			<a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
+			<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a> &nbsp; 
+			<a class="btn btn-dark btn-sm" href="adminPage.jsp">ADMINPAGE</a>
 		</div>
 	</c:if>
 
@@ -53,8 +50,8 @@
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-			<a class="navbar-brand" href="main.jsp"> <img
-				src="images/logo.png" alt="Logo" style="width: 40px;">
+			<a class="navbar-brand" href="main.jsp"> 
+			<img src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -70,7 +67,7 @@
 					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
 					<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
 					<c:if test="${logId.id ne 'admin' }">
-						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
+						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">Q&A</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -81,8 +78,7 @@
 		<div class="container my-3">
 			<form name="contentForm">
 				<input type="hidden" name="no" id="no" value="${board.no}">
-				<input type="hidden" name="category" id="category"
-					value="${board.category}">
+				<input type="hidden" name="category" id="category" value="${board.category}">
 				<div class="row">
 					<div class="col-md-12">
 						<table class="table table-bordered table-sm" style="background-color : white;">
@@ -96,16 +92,17 @@
 								<td>${board.wtime}</td>
 							</tr>
 							<tr>
-								<td style="min-height: 800px;"><img
-									src="./uploadFile/${board.fileName}" alt="${board.fileName}"
-									width="400px"> <br> ${board.content}</td>
+								<td style="min-height: 800px;">
+								<img src="./uploadFile/${board.fileName}" alt="${board.fileName}" width="400px"> <br> 
+								${board.content}
+								</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 				<hr>
 				<div class="container">
-					<h4>R E P L Y</h4>
+					<h4>REPLY</h4>
 					<div class="container">
 						<table class="table table-sm" id="commentList" style="background-color : white;">
 							<thead class="thead-dark">
@@ -119,7 +116,7 @@
 							<tbody>
 								<c:forEach var="reply" items="${boardReply }">
 									<tr>
-										<td>${reply.id}</td>
+										<td><a class="btn btn-dark btn-sm" onclick="userInfo('${reply.id}')">${reply.id}</a></td>
 										<td>${reply.replyContent}</td>
 										<td>${reply.wtime }</td>
 										<c:if test="${reply.id eq logId.id || logId.id eq 'admin'}" var="result">
@@ -134,22 +131,18 @@
 					</div>
 					<input type="hidden" name="logId" id="logId" value="${logId.id }">
 					<textarea class="form-control" id="replyContent" rows="3"></textarea>
-					<button type="button" class="btn btn-dark mt-3 btn-sm"
-						onClick="addReply()">댓글 작성</button>
+					<button type="button" class="btn btn-dark mt-3 btn-sm" onClick="addReply()">댓글 작성</button>
 				</div>
 				<hr>
 				<div class="row">
 					<div class="col-md-4">
-						<a class="btn btn-dark btn-block btn-sm"
-							href="getBoardList.do?category=${category }">목록</a>
+						<a class="btn btn-dark btn-block btn-sm" href="getBoardList.do?category=${category }">목록</a>
 					</div>
 					<div class="col-md-4">
-						<a class="btn btn-dark btn-block btn-sm"
-							href="modifyBoard.do?no=${board.no}&category=${category}">수정</a>
+						<a class="btn btn-dark btn-block btn-sm" href="modifyBoard.do?no=${board.no}&category=${category}">수정</a>
 					</div>
 					<div class="col-md-4">
-						<a class="btn btn-dark btn-block btn-sm"
-							href="deleteBoard.do?no=${board.no}&category=${category}">삭제</a>
+						<a class="btn btn-dark btn-block btn-sm" href="deleteBoard.do?no=${board.no}&category=${category}">삭제</a>
 					</div>
 				</div>
 			</form>
@@ -165,11 +158,10 @@
 		<div class="container my-3">
 			<form name="contentForm">
 				<input type="hidden" name="no" id="no" value="${board.no}">
-				<input type="hidden" name="category" id="category"
-					value="${board.category}">
+				<input type="hidden" name="category" id="category" value="${board.category}">
 				<div class="row">
 					<div class="col-md-12">
-						<table class="table table-bordered table-sm">
+						<table class="table table-bordered table-sm" style="background-color : white;">
 							<tr>
 								<td>${board.title}</td>
 							</tr>
@@ -177,18 +169,17 @@
 								<td>${board.id}</td>
 							</tr>
 							<tr>
-								<td style="min-height: 800px;"><img
-									src="./uploadFile/${board.fileName}" alt="${board.fileName}"
-									width="400px"> <br> ${board.content}</td>
+								<td style="min-height: 800px;">
+								<img src="./uploadFile/${board.fileName}" alt="${board.fileName}" width="400px"> <br> ${board.content}</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 				<hr>
 				<div class="container">
-					<h4>R E P L Y</h4>
+					<h4>REPLY</h4>
 					<div class="container">
-						<table class="table table-sm" id="commentList">
+						<table class="table table-sm" id="commentList" style="background-color : white;">
 							<thead class="thead-dark">
 								<tr>
 									<th class="col-2">작성자</th>
@@ -200,12 +191,12 @@
 							<tbody>
 								<c:forEach var="reply" items="${boardReply }">
 									<tr>
-										<td>${reply.id}</td>
+										<td><a class="btn btn-dark btn-sm" onclick="userInfo('${reply.id}')">${reply.id}</a></td>
 										<td>${reply.replyContent}</td>
 										<td>${reply.wtime }</td>
 										<c:if test="${reply.id eq logId.id || logId.id eq 'admin'}" var="result">
 											<td>
-												<a class="btn btn-light btn-sm" href="deleteReply.do">삭제</a>
+												<a class="btn btn-light btn-sm" onclick="deleteReply(${reply.no})">삭제</a>
 											</td>
 										</c:if>
 									</tr>
@@ -215,18 +206,15 @@
 					</div>
 					<input type="hidden" name="logId" id="logId" value="${logId.id }">
 					<textarea class="form-control" id="replyContent" rows="3"></textarea>
-					<button type="button" class="btn btn-dark mt-3 btn-sm"
-						onClick="addReply()">댓글 작성</button>
+					<button type="button" class="btn btn-dark mt-3 btn-sm" onClick="addReply()">댓글 작성</button>
 				</div>
 				<hr>
 				<div class="row">
 					<div class="col-md-4">
-						<a class="btn btn-dark btn-block btn-sm"
-							href="getBoardList.do?&category=${category}">목록</a>
+						<a class="btn btn-dark btn-block btn-sm" href="getBoardList.do?&category=${category}">목록</a>
 					</div>
 					<div class="col-md-4">
-						<a class="btn btn-danger btn-block btn-sm" data-toggle="modal"
-							data-target="#myModal">신고</a>
+						<a class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="#myModal">신고</a>
 					</div>
 				</div>
 			</form>
@@ -249,20 +237,15 @@
 					<form action="report.do" method="post"
 						onsubmit="return contentCheck()">
 						<input type="hidden" name="reportId" value="${board.id }">
-						<input type="hidden" name="reportBoardCategory"
-							value="${board.category }"> <input type="hidden"
-							name="reportBoardNo" value="${board.no }"> <select
-							name="reportCategory" class="form-control">
+						<input type="hidden" name="reportBoardCategory" value="${board.category }"> 
+						<input type="hidden" name="reportBoardNo" value="${board.no }"> 
+						<select name="reportCategory" class="form-control">
 							<option value="욕설">욕설</option>
 							<option value="사행성">사행성</option>
 							<option value="허위사실">허위사실</option>
-						</select> <br> <input type="text" class="form-control mr-sm-2"
-							name="reportContent" id="reportContent"
-							placeholder="신고내용을 입력하세요."><br>
-						<br> <input class="btn btn-danger btn-sm" type="submit"
-							value="신고">&nbsp;
-						<button type="button" class="btn btn-danger btn-sm"
-							data-dismiss="modal">닫기</button>
+						</select> <br> <input type="text" class="form-control mr-sm-2" name="reportContent" id="reportContent" placeholder="신고내용을 입력하세요."><br><br> 
+						<input class="btn btn-danger btn-sm" type="submit" value="신고">&nbsp;
+						<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">닫기</button>
 					</form>
 				</div>
 			</div>
@@ -323,6 +306,10 @@
             });
         }
     }
+	
+	function userInfo(memberId){
+		window.open('getUserInfo.do?id='+memberId,'UserInfo','width=400, height=400');
+	}
 </script>
 
 

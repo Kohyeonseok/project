@@ -63,4 +63,19 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserInfo(vo);
 	}
 
+	@Override
+	public int getReportCount(UserVO vo) {
+		return userDAO.getReportCount(vo);
+	}
+
+	@Override
+	public int getQnACount(UserVO vo) {
+		return userDAO.getQnACount(vo);
+	}
+
+	@Override
+	public int getUserCount(UserVO vo) {
+		return userDAO.getUserCount(vo);
+	}
+
 }
