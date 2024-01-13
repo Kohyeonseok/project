@@ -25,6 +25,7 @@ public class BoardVO {
 	private MultipartFile uploadFile;
 	
 	private String reportId;
+	private String reportBoardId;
 	private String reportCategory;
 	private int reportBoardNo;
 	private String reportBoardCategory;
@@ -35,6 +36,14 @@ public class BoardVO {
 	
 	
 	
+	public String getReportBoardId() {
+		return reportBoardId;
+	}
+
+	public void setReportBoardId(String reportBoardId) {
+		this.reportBoardId = reportBoardId;
+	}
+
 	public int getReportNo() {
 		return reportNo;
 	}

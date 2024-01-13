@@ -32,44 +32,31 @@ body {
 </head>
 <body>
 	<div class="container">
-		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
-			href="logout.do">LOGOUT</a>
+		${logId.id}님 안녕하세요. <br> 
+		<a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a>&nbsp;
+		<a class="btn btn-dark btn-sm" href="userPersonalPage.jsp">INFO</a>
 	</div>
 
 	<div class="container p-3 my-3">
 		<h3>MODIFY INFO</h3>
 	</div>
-	<div class="container">
+
+	<div class="container my-3">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-			<a class="navbar-brand" href="main.jsp"> <img
-				src="images/logo.png" alt="Logo" style="width: 40px;">
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#collapsibleNavbar">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!-- Links -->
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<!-- Links -->
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link"
-						href="getBoardList.do?category=hiking">HIKING</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="getBoardList.do?category=camping">CAMPING</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="getBoardList.do?category=free">FREE</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="getBoardList.do?category=market">MARKET</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="getClubBoardList.do?">CLUB</a></li>
-					<c:if test="${logId.id ne 'admin' }">
-						<li class="nav-item"><a class="nav-link"
-							href="getQNABoardList.do?id=${logId.id}">Q&A</a></li>
-					</c:if>
+					<li class="nav-item"><a class="nav-link" href="modify.jsp">MODIFY</a></li>
+					<li class="nav-item"><a class="nav-link" href="userWriteBoardList.do?id=${logId.id }">BOARDLIST</a></li>
+					<li class="nav-item"><a class="nav-link" href="userJoinClubList.do?id=${logId.id }">CLUBLIST</a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
+	
 	<div class="container pt-3 my-3 border" style="background-color: white;">
 		<form action="modify.do" action="post" onsubmit="return check()">
 		<div class="form-group col-6">

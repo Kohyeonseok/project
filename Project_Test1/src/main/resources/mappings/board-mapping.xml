@@ -79,7 +79,7 @@
 
 	<insert id="reportBoard">
 		<![CDATA[
-			INSERT INTO REPORTBOARD (REPORTID,REPORTBOARDCATEGORY,REPORTBOARDNO,REPORTCATEGORY,REPORTCONTENT) VALUES(#{reportId},#{reportBoardCategory},#{reportBoardNo},#{reportCategory},#{reportContent})
+			INSERT INTO REPORTBOARD (REPORTID,REPORTBOARDID,REPORTBOARDCATEGORY,REPORTBOARDNO,REPORTCATEGORY,REPORTCONTENT) VALUES(#{reportId},#{reportBoardId},#{reportBoardCategory},#{reportBoardNo},#{reportCategory},#{reportContent})
 		]]>
 	</insert>
 
@@ -241,6 +241,18 @@
 	<select id="getUserCount" resultType="int">
 		<![CDATA[
 			SELECT COUNT(*) FROM USER
+		]]>
+	</select>
+	
+	<select id="getUserWriteBoardList" resultType="board">
+		<![CDATA[
+			SELECT * FROM HIKINGBOARD WHERE ID=#{id} UNION SELECT * FROM CAMPINGBOARD WHERE ID=#{id} UNION SELECT * FROM FREEBOARD WHERE ID=#{id} UNION SELECT * FROM MARKETBOARD WHERE ID=#{id}
+		]]>
+	</select>
+	
+	<select id="getUserJoinClubList" resultType="club">
+		<![CDATA[
+			SELECT CLUBBOARD.* FROM CLUBBOARD JOIN CLUBMEMBER ON CLUBBOARD.no = CLUBMEMBER.no WHERE CLUBMEMBER.id = #{id}
 		]]>
 	</select>
 </mapper>

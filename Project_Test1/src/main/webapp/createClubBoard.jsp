@@ -31,8 +31,8 @@
 </head>
 <body>
 	<div class="container">
-		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; <a
-			class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
+		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
+				<a class="btn btn-dark btn-sm" href="userPersonalPage.jsp">INFO</a>
 	</div>
 
 	<div class="container p-3 my-3">

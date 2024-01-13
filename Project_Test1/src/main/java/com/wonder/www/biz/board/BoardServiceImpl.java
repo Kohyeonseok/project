@@ -32,8 +32,6 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.getSearchBoard(vo);
 	}
 
-	
-	
 
 	@Override
 	public void writeOkBoard(BoardVO vo) {
@@ -172,6 +170,15 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int getUserCount(BoardVO vo) {
 		return boardDAO.getUserCount(vo);
+	}
+
+	@Override
+	public List<BoardVO> getUserWriteBoardList(BoardVO vo) {
+		return boardDAO.getUserWriteBoardList(vo);
+	}
+	
+	public List<ClubVO> getUserJoinClubList(ClubVO vo){
+		return boardDAO.getUserJoinClubList(vo);
 	}
 
 }

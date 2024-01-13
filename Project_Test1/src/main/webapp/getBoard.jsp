@@ -32,15 +32,14 @@
 		<div class="container">
 			${logId.id}님 안녕하세요. <br> 
 			<a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
-			<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a>
+			<a class="btn btn-dark btn-sm" href="userPersonalPage.jsp">INFO</a>
 		</div>
 	</c:if>
 
 	<c:if test="${logId.id eq 'admin' }" var="result">
 		<div class="container">
 			${logId.id}님 안녕하세요. <br> 
-			<a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp; 
-			<a class="btn btn-dark btn-sm" href="modify.jsp">MODIFY</a> &nbsp; 
+			<a class="btn btn-dark btn-sm" href="logout.do">LOGOUT</a> &nbsp;  
 			<a class="btn btn-dark btn-sm" href="adminPage.jsp">ADMINPAGE</a>
 		</div>
 	</c:if>
@@ -228,15 +227,15 @@
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">R E P O R T</h4>
+					<h4 class="modal-title">REPORT</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form action="report.do" method="post"
-						onsubmit="return contentCheck()">
-						<input type="hidden" name="reportId" value="${board.id }">
+					<form action="report.do" method="post" onsubmit="return contentCheck()">
+						<input type="hidden" name="reportId" value="${logId.id}">
+						<input type="hidden" name="reportBoardId" value="${board.id }">
 						<input type="hidden" name="reportBoardCategory" value="${board.category }"> 
 						<input type="hidden" name="reportBoardNo" value="${board.no }"> 
 						<select name="reportCategory" class="form-control">

@@ -70,4 +70,8 @@ public interface BoardService {
 	int getQnACount(BoardVO vo);
 	
 	int getUserCount(BoardVO vo);
+	
+	List<BoardVO> getUserWriteBoardList(BoardVO vo);
+	
+	List<ClubVO> getUserJoinClubList(ClubVO vo);
 }

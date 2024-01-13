@@ -12,14 +12,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 	body{
 		background-color : rgba(128, 128, 128, 0.5);
@@ -32,7 +29,6 @@
 	<div class="container">
 		${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
 			href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
-			href="modify.jsp">MODIFY</a> &nbsp; <a class="btn btn-dark btn-sm"
 			href="adminPage.do">ADMINPAGE</a>
 	</div>
 
@@ -65,11 +61,12 @@
 				<thead>
 					<tr class="thead-dark">
 						<th class="col-1">신고번호</th>
+						<th class="col-1">신고자</th>
 						<th class="col-1">게시판</th>
 						<th class="col-1">번호</th>
 						<th class="col-1">작성자</th>
 						<th class="col-1">신고구분</th>
-						<th class="col-3">신고내용</th>
+						<th class="col-2">신고내용</th>
 						<th class="col-2">신고일</th>
 						<th class="col-1">글삭제</th>
 						<th class="col-1">처리</th>
@@ -79,9 +76,10 @@
 					<c:forEach var="post" items="${list}">
 						<tr>
 							<td>${post.reportNo }</td>
+							<td>${post.reportId }</td>
 							<td>${post.reportBoardCategory }</td>
 							<td><a href="#" onclick="viewReportBoard('${post.reportBoardCategory }',${post.reportBoardNo })">${post.reportBoardNo }</a></td>
-							<td>${post.reportId }</td>
+							<td>${post.reportBoardId }</td>
 							<td>${post.reportCategory }
 							<td>${post.reportContent }</td>
 							<td>${post.reportWtime }</td>

@@ -280,4 +280,18 @@ public class BoardController {
 		mav.setViewName("adminPage.jsp");
 		return mav;
 	}
+	
+	@RequestMapping("/userWriteBoardList.do")
+	public ModelAndView userWriteBoardList(BoardVO vo,ModelAndView mav) {
+		mav.addObject("list",boardService.getUserWriteBoardList(vo));
+		mav.setViewName("userWriteBoardList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/userJoinClubList.do")
+	public ModelAndView userJoinClubList(ClubVO vo,ModelAndView mav) {
+		mav.addObject("list",boardService.getUserJoinClubList(vo));
+		mav.setViewName("userJoinClubList.jsp");
+		return mav;
+	}
 }

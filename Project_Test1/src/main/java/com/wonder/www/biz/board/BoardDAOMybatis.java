@@ -147,4 +147,12 @@ public class BoardDAOMybatis {
 	public int getUserCount(BoardVO vo) {
 		return mybatis.selectOne("BoardDAO.getUserCount",vo);
 	}
+	
+	public List<BoardVO> getUserWriteBoardList(BoardVO vo){
+		return mybatis.selectList("BoardDAO.getUserWriteBoardList",vo);
+	}
+	
+	public List<ClubVO> getUserJoinClubList(ClubVO vo){
+		return mybatis.selectList("BoardDAO.getUserJoinClubList",vo);
+	}
 }
