@@ -39,7 +39,7 @@
 	<update id="updateUser">
 		<![CDATA[
 			UPDATE USER SET
-			name=#{name},nickName=#{nickName},password=#{password},postcode=#{sample4_postcode},roadAddress=#{sample4_roadAddress},jibunAddress=#{sample4_jibunAddress},detailAddress=#{sample4_detailAddress},extraAddress=#{sample4_extraAddress},phoneNum=#{phoneNum}, gender=#{gender} WHERE id=#{id}
+			name=#{name},nickName=#{nickName},password=#{password},sample4_postcode=#{sample4_postcode},sample4_roadAddress=#{sample4_roadAddress},sample4_jibunAddress=#{sample4_jibunAddress},sample4_detailAddress=#{sample4_detailAddress},sample4_extraAddress=#{sample4_extraAddress},phoneNum=#{phoneNum}, gender=#{gender} WHERE id=#{id}
 		]]>
 	</update>
 	

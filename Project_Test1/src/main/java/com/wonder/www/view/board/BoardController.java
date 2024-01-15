@@ -258,6 +258,17 @@ public class BoardController {
 		}
 	}
 	
+	@RequestMapping("/checkClub.do")
+	public void checkClub(ClubVO vo,HttpServletResponse response ) throws IOException {
+		PrintWriter out = response.getWriter();
+		if(boardService.getClubMember(vo)!=null) {			
+			out.write("success");
+		}else {
+			out.write("fail");
+		}
+	}
+	
+	
 	@RequestMapping("/searchClubBoard.do")
 	public ModelAndView searchClubBoard(ClubVO vo,ModelAndView mav) {
 		mav.addObject("clubBoard",boardService.searchClubBoard(vo));
@@ -294,4 +305,5 @@ public class BoardController {
 		mav.setViewName("userJoinClubList.jsp");
 		return mav;
 	}
+	
 }

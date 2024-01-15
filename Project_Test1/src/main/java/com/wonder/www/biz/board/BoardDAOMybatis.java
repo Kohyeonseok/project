@@ -155,4 +155,5 @@ public class BoardDAOMybatis {
 	public List<ClubVO> getUserJoinClubList(ClubVO vo){
 		return mybatis.selectList("BoardDAO.getUserJoinClubList",vo);
 	}
+	
 }

@@ -10,11 +10,13 @@
 		<typeAlias type="com.wonder.www.biz.replyVO.ReplyVO" alias="reply"></typeAlias>
 		<typeAlias type="com.wonder.www.biz.qnaVO.QnAVO" alias="qna"></typeAlias>
 		<typeAlias type="com.wonder.www.biz.clubVO.ClubVO" alias="club"></typeAlias>
+		<typeAlias type="com.wonder.www.biz.chatRoomVO.ChatRoomVO" alias="chatRoom"></typeAlias>
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정--> 
 	<mappers>
 		<mapper resource="mappings/board-mapping.xml" />
 		<mapper resource="mappings/user-mapping.xml" />
+		<mapper resource="mappings/chatRoom-mapping.xml"/>
 	</mappers>
 </configuration>

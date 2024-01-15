@@ -59,7 +59,7 @@ public class UserController {
 	@RequestMapping("/modify.do")
 	public ModelAndView modify(UserVO vo,ModelAndView mav) {
 		userService.updateUser(vo);
-		mav.setViewName("login.do");
+		mav.setViewName("userPersonalPage.jsp");
 		return mav;
 	}
 	

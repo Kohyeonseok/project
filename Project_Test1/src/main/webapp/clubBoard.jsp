@@ -10,7 +10,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap"
+	rel="stylesheet">
 
 
 <link rel="stylesheet"
@@ -23,19 +25,18 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-	body{
-		background-color : rgba(128, 128, 128, 0.5);
-		
-			font-family: 'Commissioner', sans-serif;
-	}
+body {
+	background-color: rgba(128, 128, 128, 0.5);
+	font-family: 'Commissioner', sans-serif;
+}
 </style>
 </head>
 <body>
 	<c:if test="${logId.id ne 'admin' }" var="result">
 		<div class="container">
 			${logId.id}님 안녕하세요. <br> <a class="btn btn-dark btn-sm"
-				href="logout.do">LOGOUT</a> &nbsp;
-						<a class="btn btn-dark btn-sm" href="userPersonalPage.jsp">INFO</a>
+				href="logout.do">LOGOUT</a> &nbsp; <a class="btn btn-dark btn-sm"
+				href="userPersonalPage.jsp">INFO</a>
 		</div>
 	</c:if>
 
@@ -55,29 +56,38 @@
 			<a class="navbar-brand" href="main.jsp"> <img
 				src="images/logo.png" alt="Logo" style="width: 40px;">
 			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<!-- Links -->
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<!-- Links -->
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
-					<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getBoardList.do?category=hiking">HIKING</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getBoardList.do?category=camping">CAMPING</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getBoardList.do?category=free">FREE</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getBoardList.do?category=market">MARKET</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="getClubBoardList.do?">CLUB</a></li>
 					<c:if test="${logId.id ne 'admin' }">
-						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">Q&A</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="getQNABoardList.do?id=${logId.id}">Q&A</a></li>
 					</c:if>
 				</ul>
 			</div>
 		</nav>
 	</div>
 	<div class="container">
-		<div class="container my-3 text-center" style="background-color : white;">
+		<div class="container my-3 text-center"
+			style="background-color: white;">
 			<h1>${clubBoard.title}</h1>
-			<img src="uploadFile/${clubBoard.fileName }" width="500px" height="500px">
+			<img src="uploadFile/${clubBoard.fileName }" width="500px"
+				height="500px">
 			<p>${clubBoard.content}</p>
 			<p>${clubBoard.dueDate}까지</p>
 		</div>
@@ -85,14 +95,16 @@
 		<div class="container">
 			<h3>참여인원</h3>
 			<c:forEach var="member" items="${members }">
-				<span><a class="btn btn-dark btn-sm" onclick="userInfo('${member.id}')">${member.id}</a></span>
+				<span><a class="btn btn-dark btn-sm"
+					onclick="userInfo('${member.id}')">${member.id}</a></span>
 			</c:forEach>
 		</div>
 		<hr>
 		<c:if test="${clubBoard.id ne logId.id && logId.id ne 'admin'}">
-			<a class="btn btn-dark btn-sm" onclick="joinClub()">참여하기</a> 
-			<a class="btn btn-danger btn-sm" onclick="cancleClub()">취소하기</a>
+			<a class="btn btn-dark btn-sm" onclick="joinClub()">참여하기</a>&nbsp;
+			<a class="btn btn-danger btn-sm" onclick="cancleClub()">취소하기</a>&nbsp;
 		</c:if>
+		<a class="btn btn-dark btn-sm" onclick="showChat()">채팅</a>
 	</div>
 	<input type="hidden" name="logId" id="logId" value="${logId.id }">
 	<input type="hidden" name="no" id="no" value="${clubBoard.no }">
@@ -134,7 +146,7 @@
 			type : "POST",
 			data : {
 				'id' : logId,
-				'no' : no
+				'roomId' : no
 			},
 			dataType : 'text',
 			success : function(data) {
@@ -151,6 +163,32 @@
 	function userInfo(memberId){
 		window.open('getUserInfo.do?id='+memberId,'UserInfo','width=400, height=400');
 	}
+	
+	function showChat(){
+		let logId = document.getElementById("logId").value;
+		let no = document.getElementById("no").value;
+		
+		$.ajax({
+			url : "checkClub.do",
+			type : "post",
+			data : {
+				'id' : logId,
+				'no' : no
+			},
+			dataType : 'text',
+			success : function(data){
+				if (data == "success") 
+				{
+				window.open('getChatRoom.do?roomId='+no+'&id='+logId,'chatRoom','width=500, height=750');
+				
+				} else {
+					alert("참여하고 있지않습니다.");
+				}
+			}
+		});
+		
+	} 
+	
 </script>
 
 
