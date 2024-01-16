@@ -25,7 +25,7 @@
 	<insert id="insertUser">
 		<![CDATA[
 			INSERT INTO USER
-			(name,id,nickName,password,email,postcode,roadAddress,jibunAddress,detailAddress,extraAddress,phoneNum,gender)
+			(name,id,nickName,password,email,sample4_postcode,sample4_roadAddress,sample4_jibunAddress,sample4_detailAddress,sample4_extraAddress,phoneNum,gender)
 			values(#{name},#{id},#{nickName},#{password},#{email},#{sample4_postcode},#{sample4_roadAddress},#{sample4_jibunAddress},#{sample4_detailAddress},#{sample4_extraAddress},#{phoneNum},#{gender})
 		]]>
 	</insert>

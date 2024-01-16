@@ -66,14 +66,14 @@
 	<div class="container my-3">
 		<form name="writeForm" method="post" action="createOkClubBoard.do" onSubmit="return check()" enctype="multipart/form-data">
 			<input type="hidden" name="id" id="id" value="${logId.id}">
-			<table class="table table-bordered table-sm">
+			<table class="table table-bordered table-sm" style="background-color : white;">
 				<tr>
-					<td>제목</td>
-					<td><input type="text" name="title" id="title"></td>
+					<td style="width :20%">제목</td>
+					<td style="width :80%"><input class="form-control" type="text" name="title" id="title"></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="content" id="content"></textarea></td>
+					<td><textarea name="content" class="form-control" id="content" style="height:500px;"></textarea></td>
 				</tr>
 				<tr>
 					<td><input class="form-control-file" type="file" name="uploadFile" id="uploadFile"></td>

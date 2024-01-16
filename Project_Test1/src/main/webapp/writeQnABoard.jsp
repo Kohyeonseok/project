@@ -37,7 +37,7 @@
 	</div>
 
 	<div class="container p-3 my-3">
-		<h3>W R I T E</h3>
+		<h3>WRITE</h3>
 	</div>
 	<div class="container">
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -66,14 +66,14 @@
 	<div class="container my-3">
 		<form name="writeForm" method="post" action="writeOkQnABoard.do" onSubmit="return check()">
 			<input type="hidden" name="id" id="id" value="${logId.id}">
-			<table class="table table-bordered table-sm">
+			<table class="table table-bordered table-sm" style="background-color:white;">
 				<tr>
-					<td>제목</td>
-					<td><input type="text" name="title" id="title"></td>
+					<td style="width:20%">제목</td>
+					<td style="width:80%"><input type="text" name="title" id="title" class="form-control"></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="content" id="content"></textarea></td>
+					<td><textarea name="content" id="content" class="form-control" style="height:500px;"></textarea></td>
 				</tr>
 			</table>
 			<hr>

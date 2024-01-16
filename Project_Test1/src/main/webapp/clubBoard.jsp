@@ -86,10 +86,11 @@ body {
 		<div class="container my-3 text-center"
 			style="background-color: white;">
 			<h1>${clubBoard.title}</h1>
+			<p>${clubBoard.id }</p>
+			<p>${clubBoard.dueDate}</p>
 			<img src="uploadFile/${clubBoard.fileName }" width="500px"
 				height="500px">
 			<p>${clubBoard.content}</p>
-			<p>${clubBoard.dueDate}까지</p>
 		</div>
 		<hr>
 		<div class="container">
@@ -146,7 +147,7 @@ body {
 			type : "POST",
 			data : {
 				'id' : logId,
-				'roomId' : no
+				'no' : no
 			},
 			dataType : 'text',
 			success : function(data) {

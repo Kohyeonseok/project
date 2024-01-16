@@ -82,16 +82,16 @@
 					<div class="col-md-12">
 						<table class="table table-bordered table-sm" style="background-color : white;">
 							<tr>
-								<td>${board.title}</td>
+								<td><h3>${board.title}</h3></td>
 							</tr>
 							<tr>
-								<td>${board.id}</td>
-							</tr>
+								<td>
+									<h5>${board.id}</h5>
+									<span>${board.wtime}&nbsp;&nbsp;조회 ${board.hit}</span>
+								</td>
+							</tr>						
 							<tr>
-								<td>${board.wtime}</td>
-							</tr>
-							<tr>
-								<td style="min-height: 800px;">
+								<td style="height: 500px;">
 								<img src="./uploadFile/${board.fileName}" alt="${board.fileName}" width="400px"> <br> 
 								${board.content}
 								</td>
@@ -162,13 +162,16 @@
 					<div class="col-md-12">
 						<table class="table table-bordered table-sm" style="background-color : white;">
 							<tr>
-								<td>${board.title}</td>
+								<td><h3>${board.title}</h3></td>
 							</tr>
 							<tr>
-								<td>${board.id}</td>
-							</tr>
+								<td>
+									<h5>${board.id}</h5>
+									<span>${board.wtime}&nbsp;&nbsp;조회 ${board.hit}</span>
+								</td>
+							</tr>						
 							<tr>
-								<td style="min-height: 800px;">
+								<td style="height: 500px;">
 								<img src="./uploadFile/${board.fileName}" alt="${board.fileName}" width="400px"> <br> ${board.content}</td>
 							</tr>
 						</table>
