@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardDAO">
+
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM ${category}BOARD ORDER BY NO DESC LIMIT 10
+		<if test="offset == -10">
+			OFFSET 0
+		</if>
+		<if test="offset != -10">
+			OFFSET #{offset}
+		</if>
+	</select>
+
+	<select id="countPost" resultType="int">
+		SELECT COUNT(*) FROM ${category}BOARD
+	</select>
+
+	<select id="getBoard" resultType="board">
+		<![CDATA[
+			SELECT * FROM ${category}BOARD WHERE NO=#{no}
+		]]>
+	</select>
+
+	<select id="getSearchBoard" resultType="board">
+		SELECT * FROM ${category}BOARD
+		WHERE 1 = 1
+		<if test="searchCategory == 'title'">
+			AND TITLE LIKE CONCAT ('%', #{searchContent}, '%')
+		</if>
+		<if test="searchCategory == 'content'">
+			AND CONTENT LIKE CONCAT ('%', #{searchContent}, '%')
+		</if>
+		ORDER BY NO DESC
+	</select>
+
+
+	<insert id="writeOkBoard">
+		<![CDATA[
+			INSERT INTO ${category}BOARD (ID, TITLE, CONTENT,FILENAME, CATEGORY) values(#{id},#{title},#{content},#{fileName},#{category})
+		]]>
+	</insert>
+
+	<delete id="deleteBoard">
+		<![CDATA[
+			DELETE FROM ${category}BOARD WHERE NO=#{no}
+		]]>
+	</delete>
+
+	<update id="updateOkBoard">
+		<![CDATA[
+			UPDATE ${category}BOARD SET title=CONCAT(#{title},'(수정)'), content=#{content}, wtime=CURRENT_TIMESTAMP, fileName=#{fileName} WHERE NO=#{no}
+		]]>
+	</update>
+
+	<update id="updateBoardHit">
+		<![CDATA[
+			UPDATE ${category}BOARD SET HIT=HIT+1 WHERE NO=#{no}
+		]]>
+	</update>
+
+
+
+
+	<insert id="inputReply">
+		<![CDATA[
+			INSERT INTO REPLY (POSTNO,ID,REPLYCONTENT,CATEGORY) VALUES(#{postNo},#{id},#{replyContent},#{category}) 
+		]]>
+	</insert>
+
+	<select id="getBoardReply" resultType="reply">
+		<![CDATA[
+			SELECT * FROM REPLY WHERE POSTNO=${no} AND CATEGORY='${category}' ORDER BY NO ASC
+		]]>
+	</select>
+
+
+	<insert id="reportBoard">
+		<![CDATA[
+			INSERT INTO REPORTBOARD (REPORTID,REPORTBOARDID,REPORTBOARDCATEGORY,REPORTBOARDNO,REPORTCATEGORY,REPORTCONTENT) VALUES(#{reportId},#{reportBoardId},#{reportBoardCategory},#{reportBoardNo},#{reportCategory},#{reportContent})
+		]]>
+	</insert>
+
+	<select id="getReportBoardList" resultType="board">
+		<![CDATA[
+			SELECT * FROM REPORTBOARD ORDER BY REPORTWTIME ASC;
+		]]>
+	</select>
+
+	<delete id="adminDeleteBoard">
+		<![CDATA[
+			DELETE FROM ${category}BOARD WHERE NO=#{no}
+		]]>
+	</delete>
+
+	<delete id="adminDeleteReport">
+		<![CDATA[
+			DELETE FROM REPORTBOARD WHERE reportNo=#{reportNo}
+		]]>
+	</delete>
+
+	<delete id="deleteReply">
+		<![CDATA[
+			DELETE FROM REPLY WHERE NO=#{no}
+		]]>
+	</delete>
+
+	<select id="getQNABoardList" resultType="qna">
+		<if test="id != 'admin'">
+			SELECT * FROM QNABOARD WHERE ID=#{id} OR FORNAME=#{id}
+			ORDER BY groupNum DESC, WTIME ASC
+		</if>
+		<if test="id == 'admin'">
+			SELECT * FROM QNABOARD ORDER BY groupNum DESC, WTIME ASC
+		</if>
+
+	</select>
+
+	<insert id="writeOkQnABoard">
+		<![CDATA[
+			INSERT INTO QNABOARD (ID,TITLE,CONTENT) VALUES(#{id},#{title},#{content})
+		]]>
+	</insert>
+
+	<select id="getQnABoard" resultType="qna">
+		<![CDATA[
+			SELECT * FROM QNABOARD WHERE NO=#{no}
+		]]>
+	</select>
+
+	<select id="getCurNum" resultType="int">
+		<![CDATA[
+			SELECT MAX(no) FROM QNABoard
+		]]>
+	</select>
+
+	<update id="updateGroupNum">
+		<![CDATA[
+			UPDATE QNABoard SET GROUPNUM=#{groupNum} WHERE NO=#{groupNum}
+		]]>
+	</update>
+
+	<update id="updateStepNum">
+		<![CDATA[
+			UPDATE QNABoard SET STEPNUM = STEPNUM+1 WHERE GROUPNUM=#{groupNum} AND STEPNUM >= (${stepNum}+1)
+		]]>
+	</update>
+
+	<insert id="writeQnAReply">
+		<![CDATA[
+			INSERT INTO QNABoard (ID,TITLE,CONTENT,GROUPNUM,RESULT,FORNAME) VALUES (#{id},#{title},#{content},#{groupNum},"",#{forName})
+		]]>
+	</insert>
+
+	<update id="updateResult">
+		<![CDATA[
+			UPDATE QNABoard SET RESULT = '답변완료' WHERE NO=#{groupNum}
+		]]>
+	</update>
+
+	<select id="getClubBoardList" resultType="club">
+		<![CDATA[
+			SELECT * FROM CLUBBOARD ORDER BY DUEDATE ASC
+		]]>
+	</select>
+
+	<insert id="createOkClubBoard">
+		<![CDATA[
+			INSERT INTO CLUBBOARD (ID,TITLE,CONTENT,FILENAME,DUEDATE) VALUES (#{id},#{title},#{content},#{fileName},#{dueDate})
+		]]>
+	</insert>
+
+	<select id="getClubBoard" resultType="club">
+		<![CDATA[
+			SELECT * FROM CLUBBOARD WHERE NO=#{no}
+		]]>
+	</select>
+
+	<select id="getClubMembers" resultType="club">
+		<![CDATA[
+			SELECT * FROM CLUBMEMBER WHERE NO=#{no}
+		]]>
+	</select>
+
+	<insert id="joinClub">
+		<if test="no == 0">
+			INSERT INTO CLUBMEMBER (ID, NO) VALUES (#{id}, (SELECT MAX(no) FROM clubBoard));
+		</if>
+		<if test="no != 0">
+			INSERT INTO CLUBMEMBER (NO,ID) VALUES (#{no},#{id})
+		</if>
+	</insert>
+
+	<select id="getClubMember" resultType="club">
+		<![CDATA[
+			SELECT * FROM CLUBMEMBER WHERE NO=#{no} AND ID=#{id}
+		]]>
+	</select>
+
+	<delete id="cancleClub">
+		<![CDATA[
+			DELETE FROM CLUBMEMBER WHERE NO=#{no} AND ID=#{id}
+		]]>
+	</delete>
+
+	<select id="searchClubBoard" resultType="club">
+		SELECT * FROM CLUBBOARD
+		WHERE 1 = 1
+		<if test="searchCategory == 'title'">
+			AND TITLE LIKE CONCAT ('%', #{searchContent}, '%')
+		</if>
+		<if test="searchCategory == 'content'">
+			AND CONTENT LIKE CONCAT ('%', #{searchContent}, '%')
+		</if>
+		<if test="searchCategory == 'date'">
+			AND DUEDATE LIKE CONCAT ('%', #{searchContent}, '%')
+		</if>
+		ORDER BY DUEDATE DESC
+	</select>
+
+	<delete id="deleteClubBoard">
+		<![CDATA[
+			DELETE FROM CLUBBOARD WHERE NO=#{no}
+		]]>
+	</delete>
+
+	<select id="getReportCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM REPORTBOARD
+		]]>
+	</select>
+
+	<select id="getQnACount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM QNABOARD WHERE RESULT='답변대기'
+		]]>
+	</select>
+
+	<select id="getUserCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM USER
+		]]>
+	</select>
+	
+	<select id="getUserWriteBoardList" resultType="board">
+		<![CDATA[
+			SELECT * FROM HIKINGBOARD WHERE ID=#{id} UNION SELECT * FROM CAMPINGBOARD WHERE ID=#{id} UNION SELECT * FROM FREEBOARD WHERE ID=#{id} UNION SELECT * FROM MARKETBOARD WHERE ID=#{id}
+		]]>
+	</select>
+	
+	<select id="getUserJoinClubList" resultType="club">
+		<![CDATA[
+			SELECT CLUBBOARD.* FROM CLUBBOARD JOIN CLUBMEMBER ON CLUBBOARD.no = CLUBMEMBER.no WHERE CLUBMEMBER.id = #{id}
+		]]>
+	</select>
+</mapper>
