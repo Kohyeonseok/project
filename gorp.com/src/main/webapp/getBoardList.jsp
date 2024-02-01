@@ -64,10 +64,10 @@
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<!-- Links -->
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?pageNum=1&category=hiking">HIKING</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?pageNum=1&category=camping">CAMPING</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?pageNum=1&category=free">FREE</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?pageNum=1&category=market">MARKET</a></li>
 					<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
 					<c:if test="${logId.id ne 'admin' }">
 						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">Q&A</a></li>

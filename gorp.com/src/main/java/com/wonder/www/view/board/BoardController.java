@@ -57,7 +57,7 @@ public class BoardController {
 			long timestamp = System.currentTimeMillis();
 			String newFileName = timestamp+"_"+fileName;
 			vo.setFileName(newFileName);
-			uploadFile.transferTo(new File("/Users/hyeonseok/Desktop/spring/Project_Test1/src/main/webapp/uploadFile/" + newFileName));
+			uploadFile.transferTo(new File("/Users/hyeonseok/Desktop/spring/gorp.com/src/main/webapp/uploadFile/" + newFileName));
 		}
 		
 		boardService.writeOkBoard(vo);
@@ -219,7 +219,7 @@ public class BoardController {
 			long timestamp = System.currentTimeMillis();
 			String newFileName = timestamp+"_"+fileName;
 			vo.setFileName(newFileName);
-			uploadFile.transferTo(new File("/Users/hyeonseok/Desktop/spring/Project_Test1/src/main/webapp/uploadFile/" + newFileName));
+			uploadFile.transferTo(new File("/Users/hyeonseok/Desktop/spring/gorp.com/src/main/webapp/uploadFile/" + newFileName));
 		}
 		
 		boardService.createOkClubBoard(vo);

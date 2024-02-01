@@ -227,13 +227,20 @@
 					let pw = document.getElementById("password").value;
 					let pwCk = document.getElementById("passwordCheck").value;
 
-					if (pw != pwCk) {
-						$("#pwCheckResult").html('비밀번호가 일치하지 않습니다.').css(
-								'color', 'red');
-					} else {
-						$("#pwCheckResult").html('사용가능한 비밀번호 입니다.').css(
-								'color', 'green');
-					}
+					// 비밀번호 유효성 검사
+			        var pwCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,15}$/;
+
+			        // 비밀번호 조건 체크
+			        if (!pwCheck.test(pw)) {
+			            $("#pwCheckResult").html('비밀번호는 8자리 이상 15자리 이하, 영어 대문자 1글자 이상, 소문자 1글자 이상, 숫자 1글자 이상, 특수문자(!@#$%^&*)를 1개 이상 포함해야합니다.').css(
+			                    'color', 'red');
+			        } else if (pw != pwCk) {
+			            $("#pwCheckResult").html('비밀번호가 일치하지 않습니다.').css(
+			                    'color', 'red');
+			        } else {
+			            $("#pwCheckResult").html('사용가능한 비밀번호 입니다.').css(
+			                    'color', 'green');
+			        }
 				})
 	</script>
 	<script>
@@ -242,28 +249,35 @@
 				function() {
 					let id = $('#id').val();
 
-					$.ajax({
-						url : "idCheck.do",
-						type : "post",
-						data : {
-							"id" : id
-						},
-						dataType : 'text',
+			        var idCheck = /^[a-z0-9]{6,9}$/;
 
-						success : function(result) {
-							console.log(result);
-							if (result == 1) {
-								$("#idCheck").html('사용할 수 없는 아이디 입니다.').css(
-										'color', 'red');
-							} else {
-								$("#idCheck").html('사용할 수 있는 아이디 입니다.').css(
-										'color', 'green');
+			        if (!idCheck.test(id)) {
+			            $("#idCheck").html('아이디는 소문자 영어와 숫자만 포함하며, 6자 이상 10자 미만이어야 합니다.').css(
+			                    'color', 'red');
+			        } else {
+						$.ajax({
+							url : "idCheck.do",
+							type : "post",
+							data : {
+								"id" : id
+							},
+							dataType : 'text',
+
+							success : function(result) {
+								console.log(result);
+								if (result == 1) {
+									$("#idCheck").html('사용할 수 없는 아이디 입니다.').css(
+											'color', 'red');
+								} else {
+									$("#idCheck").html('사용할 수 있는 아이디 입니다.').css(
+											'color', 'green');
+								}
+							},
+							error : function() {
+								alert("서버요청실패");
 							}
-						},
-						error : function() {
-							alert("서버요청실패");
-						}
-					})
+						})
+			        }	
 				})
 	</script>
 	<script>

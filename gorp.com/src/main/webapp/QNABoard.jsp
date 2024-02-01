@@ -63,10 +63,10 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<!-- Links -->
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=hiking">HIKING</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=camping">CAMPING</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=free">FREE</a></li>
-					<li class="nav-item"><a class="nav-link" href="getBoardList.do?category=market">MARKET</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?pageNum=1&category=hiking">HIKING</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?pageNum=1&category=camping">CAMPING</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?pageNum=1&category=free">FREE</a></li>
+					<li class="nav-item"><a class="nav-link" href="getBoardList.do?pageNum=1&category=market">MARKET</a></li>
 					<li class="nav-item"><a class="nav-link" href="getClubBoardList.do?">CLUB</a></li>
 					<c:if test="${logId.id ne 'admin' }">
 						<li class="nav-item"><a class="nav-link" href="getQNABoardList.do?id=${logId.id}">QNA</a></li>
@@ -92,8 +92,8 @@
 				<div class="col-md-12">
 					<table class="table table-bordered table-sm" style="background-color:white;">
 						<tr>
-							<td>제목</td>
-							<td>${board.title}</td>
+							<td style="width:20%;">제목</td>
+							<td style="width:80%;">${board.title}</td>
 						</tr>
 						<tr>
 							<td>작성자</td>
@@ -101,7 +101,7 @@
 						</tr>
 						<tr>
 							<td>내용</td>
-							<td>${board.content}</td>
+							<td style="height:500px;">${board.content}</td>
 						</tr>
 					</table>
 				</div>
@@ -125,8 +125,8 @@
 					<div class="col-md-12">
 						<table class="table table-bordered table-sm" style="background-color:white;">
 							<tr>
-								<td>제목</td>
-								<td><input type="text" name="title"
+								<td style="width:20%;">제목</td>
+								<td style="width:80%;"><input type="text" class="form-control" name="title"
 									value="re : ${board.title}"></td>
 							</tr>
 							<tr>
@@ -135,7 +135,7 @@
 							</tr>
 							<tr>
 								<td>내용</td>
-								<td><textarea name="content">re : ${board.content}	&#10;</textarea></td>
+								<td><textarea name="content" class="form-control"  style="height:500px;">re : ${board.content}&#10;</textarea></td>
 							</tr>
 						</table>
 					</div>
@@ -143,7 +143,7 @@
 				<hr>
 				<div class="row">
 					<div class="col-md-4">
-						<input type="submit" class="btn btn-light" value="답변">
+						<input type="submit" class="btn btn-light btn-xl" value="답변">
 					</div>
 				</div>
 			</form>

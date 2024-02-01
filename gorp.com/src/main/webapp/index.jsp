@@ -34,8 +34,8 @@
 <body>
 
 	<div class="container">
-		<div class="row">
-			<div class="col-5" id="logNav">
+		<div class="container d-flex flex-column flex-md-row">
+			<div class="container col-5" id="logNav">
 			<h3>WELCOME</h3><br>
 				<form action="login.do" method="post" onsubmit="return check()">
 					<input type="text" class="form-control" name="id" id="id" placeholder="ID"><br>
@@ -48,7 +48,7 @@
 				
 				</form>
 			</div>
-			<div class="col-7">
+			<div class="container col-7">
 				<img src="images/gropcom.jpg" style="height: 100vh; width: 100%; object-fit: cover;">
 			</div>
 		</div>
